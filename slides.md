@@ -1,7 +1,7 @@
 ---
 theme: geist
 highlighter: shiki
-favicon: 'images/favicon.ico'
+favicon: '/images/favicon.ico'
 fonts:
   mono: 'Noto Sans Mono'
 ---
@@ -32,7 +32,7 @@ fonts:
 # 자기소개
 
 <div class='flex mt-8'>
-  <img class='mr-8 w-80 h-80' src='images/minsu.kim.png' />
+  <img class='mr-8 w-80 h-80' src='/images/minsu.kim.png' />
 
   <div class='flex flex-col justify-between'>
     <div>
@@ -72,7 +72,7 @@ fonts:
 # 자기소개
 
 <div class='flex mt-8'>
-  <img class='mr-8 w-80 h-80' src='images/changhui.lee.png' />
+  <img class='mr-8 w-80 h-80' src='/images/changhui.lee.png' />
 
   <div class='flex flex-col justify-between'>
     <div>
@@ -111,7 +111,7 @@ fonts:
 # 함수형 프로그래밍이란?
 
 <div class='relative mt-8'>
-  <img class='h-80 rounded mx-auto' src='images/what-is-fp.png' />
+  <img class='h-80 rounded mx-auto' src='/images/what-is-fp.png' />
   <mdi-close v-click class='slidev-vclick-target h-100 w-100 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-red-700' />
 </div>
 
@@ -139,11 +139,11 @@ fonts:
 # 팀에 함수형 프로그래밍 도입하기
 
 <div class='flex items-center mt-8'>
-  <img class='h-50 rounded' src='images/team-fp.png' />
+  <img class='h-50 rounded' src='/images/team-fp.png' />
   <div class='slidev-vclick-target flex items-center' v-click>
     <mdi-arrow-right-bold class='h-30 w-30 text-red-700' />
     <div class='text-center'>
-      <img class='h-80 rounded mx-auto' src='images/team-study.png' />
+      <img class='h-80 rounded mx-auto' src='/images/team-study.png' />
       <p>팀 내부에서 함수형 프로그래밍에 대한 관심이 존재</p>
     </div>
   </div>
@@ -155,7 +155,7 @@ fonts:
 
 <div class='flex mt-8'>
   <div class='text-center flex flex-col'>
-    <img class='h-70 rounded' src='images/many-input-form.png' />
+    <img class='h-70 rounded' src='/images/many-input-form.png' />
     <p>진행하던 프로젝트에 <strong>복잡한 상태를 관리</strong>해야 하는 폼이 존재</p>
   </div>
 
@@ -175,7 +175,7 @@ fonts:
 
 <div class='flex items-center mt-8'>
   <div class='text-center flex flex-col'>
-    <img class='h-40 rounded' src='images/fp-ts.png' />
+    <img class='h-40 rounded' src='/images/fp-ts.png' />
     <p>fp-ts</p>
   </div>
 
@@ -339,7 +339,7 @@ type Either<E, A> = Left<E> | Right<A>;
     <span class='bg-dark-400 font-mono font-bold'>Either&ltE,A></span>는 두 개의 타입 중 하나의 값을 표현합니다.
     <span class='text-xs inline-block relative'>
       (분리 합집합, Disjoint Union)
-      <img src='images/disjoint-union.png' class='h-24 absolute -top-26 left-1/2 transform -translate-x-1/2 bg-light-50 rounded-md'>
+      <img src='/images/disjoint-union.png' class='h-24 absolute -top-26 left-1/2 transform -translate-x-1/2 bg-light-50 rounded-md'>
     </span>
   </p>
   <p class='mt-0 mb-2 text-normal'>
@@ -505,7 +505,7 @@ const read: Task<string> = () => {
 read();
 ```
 
-  <img v-click src='images/task-example.png' class='slidev-vclick-target h-30 absolute bottom-10 right-10'>
+  <img v-click src='/images/task-example.png' class='slidev-vclick-target h-30 absolute bottom-10 right-10'>
 
 </div>
 
@@ -550,7 +550,7 @@ async function run() {
 run();
 ```
 
-  <img v-click src='images/task-either-example.png' class='slidev-vclick-target h-20 absolute bottom-10 right-10'>
+  <img v-click src='/images/task-either-example.png' class='slidev-vclick-target h-20 absolute bottom-10 right-10'>
 
 </div>
 
@@ -618,7 +618,7 @@ add3(add3(add3(add3(add3(add2(add1(1)))))));
 ```
 
   <div v-click='2' class='slidev-vclick-target absolute bottom-4 right-4 text-center'>
-    <img src='images/cb-hell.png' class='h-70 mb-2 mx-auto' />
+    <img src='/images/cb-hell.png' class='h-70 mb-2 mx-auto' />
     <span class='text-base'>Callback Hell이 떠오르시지 않나요?</span>
   </div>
 
@@ -660,7 +660,7 @@ pipe(1, add1, add2, add3, add3, add3, add3, add3, add3);
 ```
 
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
-    <img src='images/pipe.png' class='h-46 mb-2 mx-auto' />
+    <img src='/images/pipe.png' class='h-46 mb-2 mx-auto' />
     <span class='text-sm block mb-1'>
       JavaScript의 pipe 연산자 |>는 제안 Stage 2단계에 있습니다.
     </span>
@@ -711,7 +711,7 @@ pipe(
 ```
 
   <div v-click class='slidev-vclick-target absolute bottom-4 right-8 text-center'>
-    <img src='images/option-map-some-example.png' class='h-6 mb-2 mx-auto' />
+    <img src='/images/option-map-some-example.png' class='h-6 mb-2 mx-auto' />
     <span class='text-sm block'>
       <span class='bg-dark-400 font-mono font-bold'>Some</span> 타입일 경우 <span class='bg-dark-400 font-mono font-bold'>map</span> 함수에 전달된 함수가 실행됩니다.
     </span>
@@ -757,7 +757,7 @@ pipe(
 ```
 
   <div v-click class='slidev-vclick-target absolute bottom-4 right-8 text-center'>
-    <img src='images/option-map-none-example.png' class='h-6 mb-2 mx-auto' />
+    <img src='/images/option-map-none-example.png' class='h-6 mb-2 mx-auto' />
     <span class='text-sm block'>
       <span class='bg-dark-400 font-mono font-bold'>None</span> 타입일 경우 <span class='bg-dark-400 font-mono font-bold'>map</span> 함수에 전달된 함수가 실행되지 않습니다.
     </span>
@@ -808,7 +808,7 @@ func('Hello World!');
 ```
 
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
-    <img src='images/either-chain-left-example.png' class='h-16 mb-2 mx-auto' />
+    <img src='/images/either-chain-left-example.png' class='h-16 mb-2 mx-auto' />
     <span class='text-sm block'>
       <span class='bg-dark-400 font-mono font-bold'>Left</span> 타입일 경우 <span class='bg-dark-400 font-mono font-bold'>chain</span> 함수에 전달된 함수가 실행되지 않습니다.
     </span>
@@ -859,7 +859,7 @@ func(10);
 ```
 
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
-    <img src='images/either-chain-right-example.png' class='h-16 mb-2 mx-auto' />
+    <img src='/images/either-chain-right-example.png' class='h-16 mb-2 mx-auto' />
     <span class='text-sm block'>
       <span class='bg-dark-400 font-mono font-bold'>Right</span> 타입일 경우 <span class='bg-dark-400 font-mono font-bold'>chain</span> 함수에 전달된 함수가 실행 됩니다.
     </span>
@@ -902,7 +902,7 @@ pipe(
 ```
 
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
-    <img src='images/option-match-some-example.png' class='h-16 mb-2 mx-auto' />
+    <img src='/images/option-match-some-example.png' class='h-16 mb-2 mx-auto' />
     <span class='text-sm block'>
       <span class='bg-dark-400 font-mono font-bold'>Option</span> 의 <span class='bg-dark-400 font-mono font-bold'>Some</span> 타입일 경우 두 번째 인자로 전달된 함수가 실행된다.
     </span>
@@ -945,7 +945,7 @@ pipe(
 ```
 
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
-    <img src='images/option-match-none-example.png' class='h-16 mb-2 mx-auto' />
+    <img src='/images/option-match-none-example.png' class='h-16 mb-2 mx-auto' />
     <span class='text-sm block'>
       <span class='bg-dark-400 font-mono font-bold'>Option</span> 의 <span class='bg-dark-400 font-mono font-bold'>None</span> 타입일 경우 첫 번째 인자로 전달된 함수가 실행된다.
     </span>
