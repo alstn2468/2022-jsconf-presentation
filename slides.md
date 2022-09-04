@@ -379,7 +379,7 @@ const handleEmailChange = (e) => {
 
 # 공통 검증 함수 만들기
 
-```ts
+```ts {all|5|6|7-14|8-12|6|13}
 import { fromPredicate } from 'fp-ts/Either';
 import { pipe, type Predicate } from 'fp-ts/function';
 import { every, map } from 'fp-ts/Array';
@@ -397,10 +397,74 @@ const validate = <T>(validators: Array<Predicate<T>>, errorMessage: string) => (
 );
 ```
 
+<div v-click>
+
 ```ts
 const my_validator = validate(myMobileNumberRules, '잘못된 전화번호 형식입니다.');
 
 my_validator('01012345678'); // right('01012345678')
-my_validator('01aabb'); // left('잘못된 전화번호 형식입니다.')
+my_validator('01aabb');      // left('잘못된 전화번호 형식입니다.')
 ```
+</div>
+---
+
+# 검증 규칙 정의하기
+
+```ts
+const startsWith = (search: string): Predicate<string> => (text: string) => text.startsWith(search);
+
+const minLength = (limit: number): Predicate<string> => (text: string) => text.length >= limit;
+
+const maxLength = (limit: number): Predicate<string> => (text: string) => text.length <= limit;
+
+const testPhoneNumberPattern = (text: string) => !/[^0-9]/gi.test(text);
+```
+
+<div v-click>
+```ts
+const myMobileNumer = '010123456';
+
+testPhoneNumberPattern(myMobileNumer); // true
+startsWith('01')(myMobileNumer);       // true
+maxLength(11)(myMobileNumer);          // true
+minLength(10)(myMobileNumer);          // false
+```
+</div>
+
+---
+
+# 입력 필드 검증기 만들기
+
+```ts {all|5-19|6|7|8-18|all}
+import { chain } from 'fp-ts/Either';
+import { pipe } from 'fp-ts/function';
+
+export const validatePhoneNumber = (phoneNumber: string): Either<string, string> =>
+  pipe(
+    phoneNumber,
+    validate([minLength(1)], '필수항목입니다.'), // 아무것도 입력되지 않았는지 검사합니다.
+    chain(
+      validate(
+        [
+          testPhoneNumberPattern, // 숫자 외에 다른 문자가 있는지 확인합니다.
+          startsWith('01'),       // 휴대폰 번호는 01로 시작해야합니다.
+          minLength(10),          // 휴대폰 번호의 길이는 최소 10자여야합니다.
+          maxLength(11),          // 휴대폰 번호의 길이는 최대 11자여야합니다.
+        ],
+        '올바르지 않은 번호형식입니다.'
+      )
+    )
+  );
+```
+
+<div v-after>
+
+```ts
+validatePhoneNumber('');            // left('필수항목입니다.');
+validatePhoneNumber('012323abc');   // left('올바르지 않은 번호형식입니다.');
+validatePhoneNumber('01012345678'); // right('01012345678');
+```
+
+</div>
+
 ---
