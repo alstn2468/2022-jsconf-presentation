@@ -217,15 +217,114 @@ fonts:
 
 # fp-ts의 타입 추상화
 
-<h2 class='mb-2 mt-8 inline-blockfont-mono'>
+<h2 class='mb-2 mt-8 inline-block font-mono'>
   <span class='bg-dark-400'>Option&lt;A></span>
 </h2>
+
+```ts
+type None = { _tag: 'None' };
+type Some<A> = { _tag: 'Some', value: A };
+type Option<A> = None | Some<A>;
+```
+
+<div>
+  <p class='mt-2 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono'>Option&ltA></span>는 선택적인 값 <span class='bg-dark-400 font-mono'>A</span>를 위한 컨테이너 입니다.
+  </p>
+  <p class='mt-0 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono'>A</span> 타입의 값이 존재한다면 <span class='bg-dark-400 font-mono'>Option&ltA></span>는 <span class='bg-dark-400 font-mono'>Some&ltA></span> 인스턴스입니다.<br/>
+  </p>
+  <p class='mt-0 mb-2 text-normal'>
+    값이 존재하지 않는다면 <span class='bg-dark-400 font-mono'>Option&ltA></span>는 <span class='bg-dark-400 font-mono'>None</span> 인스턴스입니다.
+  </p>
+
+  <p class='mt-8 text-xl'>
+    <span class='bg-dark-400 font-mono'>Option&ltA></span>는 <strong>실패할 수 있는 계산</strong>의 효과를 나타냅니다.
+  </p>
+</div>
 
 ---
 
 # fp-ts의 타입 추상화
 
-<h2 class='mb-2 mt-8 inline-blockfont-mono'>
+<h2 class='mb-2 mt-8 inline-block font-mono'>
+  <span class='bg-dark-400'>Option&lt;A></span>
+</h2>
+
+```ts
+type None = { _tag: 'None' };
+type Some<A> = { _tag: 'Some', value: A };
+type Option<A> = None | Some<A>;
+```
+
+```ts {1|3-9|11-13}
+import { Option, some, none } from 'fp-ts/lib/Option';
+
+function findIndex<A>(
+  as: Array<A>,
+  predicate: (a: A) => boolean
+): Option<number> {
+  const index = as.findIndex(predicate);
+  return index === -1 ? none : some(index);
+}
+
+const arr = [1, 2, 3];
+findIndex(arr, (n) => n === 1); // { _tag: 'Some', value: 0 }
+findIndex(arr, (n) => n === 4); // { _tag: 'None' }
+```
+
+---
+
+# fp-ts의 타입 추상화
+
+<h2 class='mb-2 mt-8 inline-block font-mono'>
+  <span class='bg-dark-400'>Option&lt;A></span>
+</h2>
+
+```ts
+type None = { _tag: 'None' };
+type Some<A> = { _tag: 'Some', value: A };
+type Option<A> = None | Some<A>;
+```
+
+```ts {1|3-5}
+import { fromNullable } from 'fp-ts/lib/Option';
+
+fromNullable(undefined); // { _tag: 'None' }
+fromNullable(null);      // { _tag: 'None' }
+fromNullable(0);         // { _tag: 'Some', value: 0 }
+```
+
+---
+
+# fp-ts의 타입 추상화
+
+<h2 class='mb-2 mt-8 inline-block font-mono'>
+  <span class='bg-dark-400'>Option&lt;A></span>
+</h2>
+
+```ts
+type None = { _tag: 'None' };
+type Some<A> = { _tag: 'Some', value: A };
+type Option<A> = None | Some<A>;
+```
+
+```ts {1|3-4|6-8}
+import { fromPredicate } from 'fp-ts/lib/Option';
+
+const isNumber = <T>(a: T) => !isNaN(Number(a));
+const getOptionNumber = fromPredicate(isNumber);
+
+getOptionNumber('a')   // { _tag: 'None' }
+getOptionNumber('10'); // { _tag: 'Some', value: '10' }
+getOptionNumber(1);    // { _tag: 'Some', value: 1 }
+```
+
+---
+
+# fp-ts의 타입 추상화
+
+<h2 class='mb-2 mt-8 inline-block font-mono'>
   <span class='bg-dark-400'>Either&lt;E,A></span>
 </h2>
 
@@ -233,7 +332,7 @@ fonts:
 
 # fp-ts의 타입 추상화
 
-<h2 class='mb-2 mt-8 inline-blockfont-mono'>
+<h2 class='mb-2 mt-8 inline-block font-mono'>
   <span class='bg-dark-400'>Task&lt;A></span> , <span class='bg-dark-400'>TaskEither&ltE,A></span>
 </h2>
 
@@ -241,7 +340,7 @@ fonts:
 
 # fp-ts의 유틸 함수
 
-<h2 class='mb-2 mt-8 inline-blockfont-mono'>
+<h2 class='mb-2 mt-8 inline-block font-mono'>
   <span class='bg-dark-400'>pipe</span>
 </h2>
 
@@ -249,7 +348,7 @@ fonts:
 
 # 타입 추상화를 사용하는 법
 
-<h2 class='mb-2 mt-8 inline-blockfont-mono'>
+<h2 class='mb-2 mt-8 inline-block font-mono'>
   <span class='bg-dark-400'>map</span>
 </h2>
 
@@ -257,7 +356,7 @@ fonts:
 
 # 타입 추상화를 사용하는 법
 
-<h2 class='mb-2 mt-8 inline-blockfont-mono'>
+<h2 class='mb-2 mt-8 inline-block font-mono'>
   <span class='bg-dark-400'>chain</span>
 </h2>
 
@@ -265,7 +364,7 @@ fonts:
 
 # 타입 추상화를 사용하는 법
 
-<h2 class='mb-2 mt-8 inline-blockfont-mono'>
+<h2 class='mb-2 mt-8 inline-block font-mono'>
   <span class='bg-dark-400'>match</span> , <span class='bg-dark-400'>fold</span>
 </h2>
 
