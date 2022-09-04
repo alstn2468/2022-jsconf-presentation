@@ -127,7 +127,7 @@ favicon: 'images/favicon.ico'
 
 폼에 8개의 입력이 존재하는데, 이를 어떻게 우아하게 처리할 수 있을까?
 
-<!-- ![aa](./images/reality-problem-1.png) -->
+<img src="/images/part2-1.png" class="m-5 h-80 rounded shadow" />
 
 ---
 
@@ -135,8 +135,166 @@ favicon: 'images/favicon.ico'
 
 1. 사용자에게 값 입력받기
 2. 입력된 값 검증하기
-3. 검증에 실패했다면 오류 메시지 봉
+3. 검증에 실패했다면 오류 메시지 보여주기
 
-<!-- ![bb](/images/reality-problem-2.png) -->
+
+<img src="/images/part2-2.png" class="m-5 h-60 rounded shadow" />
+
+---
+
+```ts {all|1-2|4-21|23-28|31-37|39-44} {maxHeight: 200}
+const [mobileNumber, setMobileNumber] = React.useState<string>('');
+const [mobileNumberError, setMobileNumberError] = React.useState<string>('');
+
+// 올바른 형식의 휴대폰 번호인지 검증하는 함수
+const validateMobileNumber = (value: string): boolean => {
+  if (value == '') {
+    setMobileNumberError('휴대폰 번호를 입력해주세요.');
+    return false;
+  }
+
+  if (!mobileNumberRegex.test(value)
+      || !value.startswith('01')
+      || value.length < 10
+      || value.length > 11
+  ) {
+    setMobileNumberError('휴대폰 번호가 올바르지 않습니다.');
+    return false;
+  }
+
+  return true;
+}
+
+// 휴대폰 번호 input의 onChange 이벤트 핸들러
+const handleMobileNumberChange = (e) => {
+  const { value } = e.target;
+  validateMobileNumber(value);
+  setMobileNumber(value);
+}
+
+// form onsubmit 이벤트 핸들러
+const onSubmit = () => {
+  const validations = [validateMobileNumber(mobileNumber), ...];
+  if (validations.some((valid) => !valid)) {
+    return;
+  }
+  // Submit Form ...
+}
+
+return (
+  ...
+  <input onChange={handleMobileNumberChange} value={mobileNumber} />
+  <span className="error">{mobileNumberError}</span>
+  ...
+)
+
+```
+
+---
+
+# 현재 상태
+
+### 검증 가능한 입력 필드 하나를 구현하기 위해 우리는 아래의 것들이 필요합니다.
+
+<ul class="list-disc ml-6 text-xl">
+  <li>2개의 React.useState (입력 값, 오류 메시지)</li>
+  <li>1개의 필드 검증 함수</li>
+  <li>검증 함수를 호출하고 입력 값 상태를 관리하는 1개의 이벤트 핸들러 콜백 함수</li>
+</ul>
+
+<div v-click class="text-xl mt-8 font-bold">
+  <carbon:arrow-right class='inline'/> 8개의 필드가 있다면, 16개의 상태와 8개의 이벤트 핸들러가 필요합니다.
+</div>
+
+---
+layout: center
+---
+
+```ts
+const [mobileNumber, setMobileNumber] = React.useState<string>('');
+const [mobileNumberError, setMobileNumberError] = React.useState<string>('');
+const [name, setName] = React.useState<string>('');
+const [nameError, setNameError] = React.useState<string>('');
+const [email, setEmail] = React.useState<string>('');
+const [emailError, setEmailError] = React.useState<string>('');
+
+const validateMobileNumber = (value: string): boolean => { /* ... */ }
+const validateName = (value: string): boolean => { /* ... */ }
+const validateEmail = (value: string): boolean => { /* ... */ }
+
+const handleMobileNumberChange = (e) => { /* ... */ }
+const handleNameChange = (e) => { /* ... */ }
+const handleEmailChange = (e) => { /* ... */ }
+```
+
+---
+layout: center
+---
+<span class="text-8xl">🤔</span>
+---
+
+# 솔루션?
+
+## 1. React-Hook-Form
+## 2. Formik
+
+<h2 v-click>3. fp-ts</h2>
+
+---
+
+# 공통 부분 문제 찾기
+
+<ol class="list-decimal ml-6 text-2xl">
+  <li>입력 값과 오류 메시지를 관리하는 두 개의 상태가 있습니다.</li>
+  <li>사용자가 값을 입력하면 상태를 갱신합니다.</li>
+  <li>검증 함수를 통해 사용자가 입력한 값이 올바른지 검증합니다.</li>
+  <li>검증에 오류가 있다면 오류 메시지 상태를 갱신합니다.</li>
+</ol>
+
+---
+
+# 공통 부분 문제 찾기
+
+<ol class="list-decimal ml-6 text-2xl">
+  <li><span class="text-orange-500/90 font-bold">입력 값</span>과 <span class="text-orange-500/90 font-bold">오류 메시지</span>를 관리하는 두 개의 상태가 있습니다.</li>
+  <li>사용자가 값을 입력하면 상태를 갱신합니다.</li>
+  <li><span class="text-orange-500/90 font-bold">검증 함수</span>를 통해 사용자가 입력한 값이 올바른지 검증합니다.</li>
+  <li>검증에 오류가 있다면 오류 메시지 상태를 갱신합니다.</li>
+</ol>
+
+---
+
+# 문제 해결 하기
+
+<ol class="list-decimal ml-6 text-2xl">
+  <li>공통적으로 사용할 수 있는 검증 함수 만들기</li>
+  <li>검증 규칙 정의하기</li>
+  <li>입력 필드 검증기 만들기</li>
+  <li>커스텀 훅 만들기</li>
+</ol>
+
+---
+
+# 공통 검증 함수 만들기
+
+<br>
+
+```ts {all|5|6|7-14|8-12|6|13}
+import { fromPredicate } from 'fp-ts/Either';
+import { pipe, type Predicate } from 'fp-ts/function';
+import { every, map } from 'fp-ts/Array';
+
+const validate = <T>(validators: Array<Predicate<T>>, errorMessage: string) => (value: T) => pipe(
+  value,
+  fromPredicate(
+    (val) => pipe(
+      validators,
+      map(fn => fn(val)),
+      every(Boolean),
+    ),
+    () => errorMessage,
+  ),
+);
+```
 
 ---
