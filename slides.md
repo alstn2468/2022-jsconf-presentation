@@ -447,6 +447,113 @@ getEitherString('abc'); // { _tag: 'Right', right: 'abc' }
   <span class='bg-dark-400'>Task&lt;A></span> <span class='bg-dark-400'>TaskEither&ltE,A></span>
 </h2>
 
+```ts
+type Left<E> = { _tag: 'Left', left: E };
+type Right<A> = { _tag: 'Right', right: A };
+type Either<E, A> = Left<E> | Right<A>;
+type Task<A> = { (): Promise<A> };
+type TaskEither<E, A> = Task<Either<E, A>>;
+```
+
+<div>
+  <p class='mt-2 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono font-bold'>Task&ltA></span>는 <span class='bg-dark-400 font-mono font-bold'>A</span> 타입의 값을 반환하는 비동기 계산을 표현합니다.
+  </p>
+  <p class='mt-2 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono font-bold'>Task&ltA></span>는 <strong>절대 실패하지</strong> 않는 비동기 계산에 사용됩니다.
+  </p>
+  <p class='mt-2 mb-2 text-normal'>
+    실패할 수 있는 비동기 계산은<span class='bg-dark-400 font-mono font-bold'>TaskEither&ltE,A></span>를 사용할 수 있습니다.
+  </p>
+</div>
+
+---
+
+# fp-ts의 타입 추상화
+
+<h2 class='mb-2 mt-8 inline-block font-mono'>
+  <span class='bg-dark-400'>Task&lt;A></span> <span class='bg-dark-400'>TaskEither&ltE,A></span>
+</h2>
+
+```ts
+type Left<E> = { _tag: 'Left', left: E };
+type Right<A> = { _tag: 'Right', right: A };
+type Either<E, A> = Left<E> | Right<A>;
+type Task<A> = { (): Promise<A> };
+type TaskEither<E, A> = Task<Either<E, A>>;
+```
+
+<div class='relative'>
+
+```ts {1|3-15|17}  {maxHeight: 100}
+import { Task } from 'fp-ts/lib/Task';
+
+const read: Task<string> = () => {
+  return new Promise<string>((resolve) => {
+    const rl = createInterface({
+      input: process.input,
+      output: process.stdout,
+    });
+    rl.question('Input: ', (answer) => {
+      rl.close();
+      console.log(answer);
+      resolve(answer);
+    });
+  });
+}
+
+read();
+```
+
+  <img v-click src='images/task-example.png' class='slidev-vclick-target h-30 absolute bottom-10 right-10'>
+
+</div>
+
+---
+
+# fp-ts의 타입 추상화
+
+<h2 class='mb-2 mt-8 inline-block font-mono'>
+  <span class='bg-dark-400'>Task&lt;A></span> <span class='bg-dark-400'>TaskEither&ltE,A></span>
+</h2>
+
+```ts
+type Left<E> = { _tag: 'Left', left: E };
+type Right<A> = { _tag: 'Right', right: A };
+type Either<E, A> = Left<E> | Right<A>;
+type Task<A> = { (): Promise<A> };
+type TaskEither<E, A> = Task<Either<E, A>>;
+```
+
+<div class='relative'>
+
+```ts {1|3-10|12-18|20}  {maxHeight: 100}
+import { TaskEither, tryCatch } from 'fp-ts/lib/TaskEither';
+
+function taskEitherTest(isResolve: boolean): TaskEither<string, string> {
+  return tryCatch(
+    () => isResolve
+      ? Promise.resolve('resolved')
+      : Promise.reject('rejected'),
+    () => 'fall back string',
+  );
+}
+
+async function run() {
+  const resolve = taskEitherTest(true);
+  const reject = taskEitherTest(false);
+
+  console.log(await resolve());
+  console.log(await reject());
+}
+
+run();
+```
+
+  <img v-click src='images/task-either-example.png' class='slidev-vclick-target h-20 absolute bottom-10 right-10'>
+
+</div>
+
 ---
 
 # fp-ts의 유틸 함수
@@ -454,6 +561,117 @@ getEitherString('abc'); // { _tag: 'Right', right: 'abc' }
 <h2 class='mb-2 mt-8 inline-block font-mono'>
   <span class='bg-dark-400'>pipe</span>
 </h2>
+
+```mermaid {scale: 1.6}
+flowchart LR
+  1 -- add1 --> 2 -- add2 --> 4 -- add3 --> 7
+```
+
+<div>
+
+  <p class='text-base'>
+    <span class='bg-dark-400 font-mono font-bold'>pipe</span>를 사용하지 않고 함수를 합성하는 경우
+  </p>
+
+
+```ts {1|3-5|7}
+const add = (a: number) => (b: number) => a + b;
+
+const add1 = add(1);
+const add2 = add(2);
+const add3 = add3(3);
+
+add3(add2(add1(1))); // 7
+```
+
+</div>
+
+---
+
+# fp-ts의 유틸 함수
+
+<h2 class='mb-2 mt-8 inline-block font-mono'>
+  <span class='bg-dark-400'>pipe</span>
+</h2>
+
+```mermaid {scale: 1.6}
+flowchart LR
+  1 -- add1 --> 2 -- add2 --> 4 -- add3 --> 7
+```
+
+<div>
+
+  <p class='text-base'>
+    <span class='bg-dark-400 font-mono font-bold'>pipe</span>를 사용하지 않았을 때 합성되는 함수의 수가 점점 많아진다면 어떻게 될까요??
+  </p>
+
+  <div v-click='1' class='slidev-vclick-target relative'>
+
+```ts {7}
+const add = (a: number) => (b: number) => a + b;
+
+const add1 = add(1);
+const add2 = add(2);
+const add3 = add3(3);
+
+add3(add3(add3(add3(add3(add2(add1(1)))))));
+```
+
+  <div v-click='2' class='slidev-vclick-target absolute bottom-4 right-4 text-center'>
+    <img src='images/cb-hell.png' class='h-70 mb-2' />
+    <span class='text-base'>Callback Hell이 떠오르시지 않나요?</span>
+  </div>
+
+  </div>
+
+</div>
+
+---
+
+# fp-ts의 유틸 함수
+
+<h2 class='mb-2 mt-8 inline-block font-mono'>
+  <span class='bg-dark-400'>pipe</span>
+</h2>
+
+```mermaid {scale: 1.6}
+flowchart LR
+  1 -- add1 --> 2 -- add2 --> 4 -- add3 --> 7
+```
+
+<div class='relative'>
+
+  <p class='text-base'>
+    <span class='bg-dark-400 font-mono font-bold'>pipe</span>를 사용해 함수를 합성하는 경우
+  </p>
+
+
+```ts {1,9-10}
+import { pipe } from 'fp-ts/lib/function';
+
+const add = (a: number) => (b: number) => a + b;
+
+const add1 = add(1);
+const add2 = add(2);
+const add3 = add3(3);
+
+pipe(1, add1, add2, add3);
+pipe(1, add1, add2, add3, add3, add3, add3, add3, add3);
+```
+
+  <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
+    <img src='images/pipe.png' class='h-46 mb-2' />
+    <span class='text-sm block mb-1'>
+      JavaScript의 pipe 연산자 |>는 제안 Stage 2단계에 있습니다.
+    </span>
+    <span class='text-sm block'>
+      <a href='https://github.com/tc39/proposal-pipeline-operator' target='_blank' class='text-gray-400 underline'>
+        https://github.com/tc39/proposal-pipeline-operator
+      </a>
+    </span>
+  </div>
+
+</div>
 
 ---
 
