@@ -106,6 +106,23 @@ favicon: 'images/favicon.ico'
 
 ---
 
+# 함수형 프로그래밍이란?
+
+<div class='relative'>
+  <img class='h-80 rounded mx-auto mt-10' src='images/what-is-fp.png' />
+</div>
+
+---
+
+# 함수형 프로그래밍이란?
+
+<div class='relative'>
+  <img class='h-80 rounded mx-auto mt-10' src='images/what-is-fp.png' />
+  <mdi-close class='h-100 w-100 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-red-700' />
+</div>
+
+---
+
 # 현실의 문제 해결 하기
 
 폼에 8개의 입력이 존재하는데, 이를 어떻게 우아하게 처리할 수 있을까?

@@ -11,5 +11,8 @@
     "@slidev/theme-default": "*",
     "@slidev/theme-seriph": "*",
     "slidev-theme-geist": "^0.8.1"
+  },
+  "devDependencies": {
+    "@iconify-json/mdi": "^1.1.31"
   }
 }
