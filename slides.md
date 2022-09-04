@@ -229,17 +229,17 @@ type Option<A> = None | Some<A>;
 
 <div>
   <p class='mt-2 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono'>Option&ltA></span>는 선택적인 값 <span class='bg-dark-400 font-mono'>A</span>를 위한 컨테이너 입니다.
+    <span class='bg-dark-400 font-mono font-bold'>Option&ltA></span>는 선택적인 값 <span class='bg-dark-400 font-mono font-bold'>A</span>를 위한 컨테이너 입니다.
   </p>
   <p class='mt-0 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono'>A</span> 타입의 값이 존재한다면 <span class='bg-dark-400 font-mono'>Option&ltA></span>는 <span class='bg-dark-400 font-mono'>Some&ltA></span> 인스턴스입니다.<br/>
+    <span class='bg-dark-400 font-mono font-bold'>A</span> 타입의 값이 존재한다면 <span class='bg-dark-400 font-mono font-bold'>Option&ltA></span>는 <span class='bg-dark-400 font-mono font-bold'>Some&ltA></span> 인스턴스입니다.<br/>
   </p>
   <p class='mt-0 mb-2 text-normal'>
-    값이 존재하지 않는다면 <span class='bg-dark-400 font-mono'>Option&ltA></span>는 <span class='bg-dark-400 font-mono'>None</span> 인스턴스입니다.
+    값이 존재하지 않는다면 <span class='bg-dark-400 font-mono font-bold'>Option&ltA></span>는 <span class='bg-dark-400 font-mono font-bold'>None</span> 인스턴스입니다.
   </p>
 
   <p class='mt-8 text-xl'>
-    <span class='bg-dark-400 font-mono'>Option&ltA></span>는 <strong>실패할 수 있는 계산</strong>의 효과를 나타냅니다.
+    <span class='bg-dark-400 font-mono font-bold'>Option&ltA></span>는 <strong>실패할 수 있는 계산</strong>의 효과를 나타냅니다.
   </p>
 </div>
 
@@ -328,12 +328,123 @@ getOptionNumber(1);    // { _tag: 'Some', value: 1 }
   <span class='bg-dark-400'>Either&lt;E,A></span>
 </h2>
 
+```ts
+type Left<E> = { _tag: 'Left', left: E };
+type Right<A> = { _tag: 'Right', right: A };
+type Either<E, A> = Left<E> | Right<A>;
+```
+
+<div>
+  <p class='mt-2 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono font-bold'>Either&ltE,A></span>는 두 개의 타입 중 하나의 값을 표현합니다.
+    <span class='text-xs inline-block relative'>
+      (분리 합집합, Disjoint Union)
+      <img src='images/disjoint-union.png' class='h-24 absolute -top-26 left-1/2 transform -translate-x-1/2 bg-light-50 rounded-md'>
+    </span>
+  </p>
+  <p class='mt-0 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono font-bold'>Either</span>의 인스턴스는 <span class='bg-dark-400 font-mono font-bold'>Left</span> 또는 <span class='bg-dark-400 font-mono font-bold'>Right</span> 인스턴스 입니다.
+  </p>
+  <p class='mt-0 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono font-bold'>Either</span>는 결측값을 처리하기 위해 <span class='bg-dark-400 font-mono font-bold'>Option</span> 대신에 사용할 수 있습니다.
+  </p>
+  <p class='mt-0 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono font-bold'>Option</span>의 <span class='bg-dark-400 font-mono font-bold'>None</span>은 정보를 포함할 수 있는 <span class='bg-dark-400 font-mono font-bold'>Left</span>로 대체 됩니다.
+  </p>
+
+  <p class='mt-8 text-xl'>
+    일반적으로 <span class='bg-dark-400 font-mono font-bold'>Left</span>는 <strong>실패</strong>를 표현하고 <span class='bg-dark-400 font-mono font-bold'>Right</span>는 <strong>성공</strong>을 표현합니다.
+  </p>
+</div>
+
 ---
 
 # fp-ts의 타입 추상화
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>Task&lt;A></span> , <span class='bg-dark-400'>TaskEither&ltE,A></span>
+  <span class='bg-dark-400'>Either&lt;E,A></span>
+</h2>
+
+```ts
+type Left<E> = { _tag: 'Left', left: E };
+type Right<A> = { _tag: 'Right', right: A };
+type Either<E, A> = Left<E> | Right<A>;
+```
+
+```ts {1|3-8|10-11|13-14}
+import { Either, tryCatch } from 'fp-ts/lib/Either';
+
+function parse(s: string): Either<Error, unknown> {
+  return tryCatch(
+    () => JSON.parse(s),
+    (reason) => new Error(String(reason)),
+  );
+}
+
+const success = '{"a": 1, "b": 2}';
+const fail = '{"a": 1, "b"}';
+
+parse(success); // { _tag: 'Right', right: { a: 1, b: 2 } }
+parse(fail);    // { _tag: 'Left', left: 'Error: SyntaxError: Unexpected token...' }
+```
+
+---
+
+# fp-ts의 타입 추상화
+
+<h2 class='mb-2 mt-8 inline-block font-mono'>
+  <span class='bg-dark-400'>Either&lt;E,A></span>
+</h2>
+
+```ts
+type Left<E> = { _tag: 'Left', left: E };
+type Right<A> = { _tag: 'Right', right: A };
+type Either<E, A> = Left<E> | Right<A>;
+```
+
+```ts {1|3|5-7}
+import { fromNullable } from 'fp-ts/lib/Either';
+
+const getEitherString = fromNullable('defaultValue');
+
+getEitherString(null);    // { _tag: 'Left', left: 'defaultValue' }
+getEtehrStrng(undefined); // { _tag: 'Left', left: 'defaultValue' }
+getEitherString('value'); // { _tag: 'Right', right: 'value' }
+```
+
+---
+
+# fp-ts의 타입 추상화
+
+<h2 class='mb-2 mt-8 inline-block font-mono'>
+  <span class='bg-dark-400'>Either&lt;E,A></span>
+</h2>
+
+```ts
+type Left<E> = { _tag: 'Left', left: E };
+type Right<A> = { _tag: 'Right', right: A };
+type Either<E, A> = Left<E> | Right<A>;
+```
+
+```ts {1|3-7|9-10}
+import { fromPredicate } from 'fp-ts/lib/Either';
+
+const isEmptyString = (s: string) => s === '';
+const getEitherString = fromPredicate(
+  (s: string) => !isEmptyString(s),
+  () => 'defaultValue',
+);
+
+getEitherString('');    // { _tag: 'Left', left: 'defaultValue' }
+getEitherString('abc'); // { _tag: 'Right', right: 'abc' }
+```
+
+---
+
+# fp-ts의 타입 추상화
+
+<h2 class='mb-2 mt-8 inline-block font-mono'>
+  <span class='bg-dark-400'>Task&lt;A></span> <span class='bg-dark-400'>TaskEither&ltE,A></span>
 </h2>
 
 ---
@@ -365,7 +476,7 @@ getOptionNumber(1);    // { _tag: 'Some', value: 1 }
 # 타입 추상화를 사용하는 법
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>match</span> , <span class='bg-dark-400'>fold</span>
+  <span class='bg-dark-400'>match</span> <span class='bg-dark-400'>fold</span>
 </h2>
 
 ---
