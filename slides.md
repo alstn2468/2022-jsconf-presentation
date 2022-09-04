@@ -1,6 +1,6 @@
 ---
 theme: geist
-lineNumbers: true
+highlighter: shiki
 favicon: 'images/favicon.ico'
 ---
 
@@ -227,7 +227,6 @@ favicon: 'images/favicon.ico'
 2. 입력된 값 검증하기
 3. 검증에 실패했다면 오류 메시지 보여주기
 
-
 <img src="/images/part2-2.png" class="m-5 h-60 rounded shadow" />
 
 ---
@@ -297,8 +296,8 @@ return (
 </div>
 
 ---
-layout: center
----
+
+## layout: center
 
 ```ts
 const [mobileNumber, setMobileNumber] = React.useState<string>('');
@@ -308,24 +307,37 @@ const [nameError, setNameError] = React.useState<string>('');
 const [email, setEmail] = React.useState<string>('');
 const [emailError, setEmailError] = React.useState<string>('');
 
-const validateMobileNumber = (value: string): boolean => { /* ... */ }
-const validateName = (value: string): boolean => { /* ... */ }
-const validateEmail = (value: string): boolean => { /* ... */ }
+const validateMobileNumber = (value: string): boolean => {
+  /* ... */
+};
+const validateName = (value: string): boolean => {
+  /* ... */
+};
+const validateEmail = (value: string): boolean => {
+  /* ... */
+};
 
-const handleMobileNumberChange = (e) => { /* ... */ }
-const handleNameChange = (e) => { /* ... */ }
-const handleEmailChange = (e) => { /* ... */ }
+const handleMobileNumberChange = (e) => {
+  /* ... */
+};
+const handleNameChange = (e) => {
+  /* ... */
+};
+const handleEmailChange = (e) => {
+  /* ... */
+};
 ```
 
 ---
-layout: center
----
-<span class="text-8xl">🤔</span>
----
+
+## layout: center
+
+## <span class="text-8xl">🤔</span>
 
 # 솔루션?
 
 ## 1. React-Hook-Form
+
 ## 2. Formik
 
 <h2 v-click>3. fp-ts</h2>
@@ -374,17 +386,21 @@ import { fromPredicate } from 'fp-ts/Either';
 import { pipe, type Predicate } from 'fp-ts/function';
 import { every, map } from 'fp-ts/Array';
 
-const validate = <T>(validators: Array<Predicate<T>>, errorMessage: string) => (value: T) => pipe(
-  value,
-  fromPredicate(
-    (val) => pipe(
-      validators,
-      map(fn => fn(val)),
-      every(Boolean),
-    ),
-    () => errorMessage,
-  ),
-);
+const validate =
+  <T>(validators: Array<Predicate<T>>, errorMessage: string) =>
+  (value: T) =>
+    pipe(
+      value,
+      fromPredicate(
+        (val) =>
+          pipe(
+            validators,
+            map((fn) => fn(val)),
+            every(Boolean)
+          ),
+        () => errorMessage
+      )
+    );
 ```
 
 ---
