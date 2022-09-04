@@ -296,8 +296,8 @@ return (
 </div>
 
 ---
-
-## layout: center
+layout: center
+---
 
 ```ts
 const [mobileNumber, setMobileNumber] = React.useState<string>('');
@@ -329,10 +329,10 @@ const handleEmailChange = (e) => {
 ```
 
 ---
-
-## layout: center
-
-## <span class="text-8xl">🤔</span>
+layout: center
+---
+<span class="text-8xl">🤔</span>
+---
 
 # 솔루션?
 
