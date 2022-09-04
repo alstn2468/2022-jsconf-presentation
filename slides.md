@@ -12,7 +12,7 @@ fonts:
 
 <div class='pt-12'>
   <span @click='$slidev.nav.next' class='px-2 py-1 rounded cursor-pointer' hover='bg-white bg-opacity-10'>
-    다음 페이지로 <carbon:arrow-right class='inline'/>
+    다음 페이지로 <carbon:arrow-right class='mt-8 inline-block'/>
   </span>
 </div>
 
@@ -31,8 +31,8 @@ fonts:
 
 # 자기소개
 
-<div class='flex'>
-  <img class='mr-8' src='images/minsu.kim.png' />
+<div class='flex mt-8'>
+  <img class='mr-8 w-80 h-80' src='images/minsu.kim.png' />
 
   <div class='flex flex-col justify-between'>
     <div>
@@ -71,8 +71,8 @@ fonts:
 
 # 자기소개
 
-<div class='flex'>
-  <img class='mr-8' src='images/changhui.lee.png' />
+<div class='flex mt-8'>
+  <img class='mr-8 w-80 h-80' src='images/changhui.lee.png' />
 
   <div class='flex flex-col justify-between'>
     <div>
@@ -110,7 +110,7 @@ fonts:
 
 # 함수형 프로그래밍이란?
 
-<div class='relative'>
+<div class='relative mt-8'>
   <img class='h-80 rounded mx-auto' src='images/what-is-fp.png' />
   <mdi-close v-click class='slidev-vclick-target h-100 w-100 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-red-700' />
 </div>
@@ -119,7 +119,7 @@ fonts:
 
 # 함수형 프로그래밍이란?
 
-<p class='text-xl mb-8'>
+<p class='text-xl my-8'>
   데이터를 수학적 <strong>계산 함수(순수 함수)</strong>로 처리하고<br/>
   <strong>사이드 이펙트를 멀리</strong>하는 프로그래밍 패러다임
 </p>
@@ -138,7 +138,7 @@ fonts:
 
 # 팀에 함수형 프로그래밍 도입하기
 
-<div class='flex items-center'>
+<div class='flex items-center mt-8'>
   <img class='h-50 rounded' src='images/team-fp.png' />
   <div class='slidev-vclick-target flex items-center' v-click>
     <mdi-arrow-right-bold class='h-30 w-30 text-red-700' />
@@ -153,7 +153,7 @@ fonts:
 
 # 팀에 함수형 프로그래밍 도입하기
 
-<div class='flex'>
+<div class='flex mt-8'>
   <div class='text-center flex flex-col'>
     <img class='h-70 rounded' src='images/many-input-form.png' />
     <p>진행하던 프로젝트에 <strong>복잡한 상태를 관리</strong>해야 하는 폼이 존재</p>
@@ -173,7 +173,7 @@ fonts:
 
 # 팀에 함수형 프로그래밍 도입하기
 
-<div class='flex items-center'>
+<div class='flex items-center mt-8'>
   <div class='text-center flex flex-col'>
     <img class='h-40 rounded' src='images/fp-ts.png' />
     <p>fp-ts</p>
@@ -217,7 +217,7 @@ fonts:
 
 # fp-ts의 타입 추상화
 
-<h2 class='my-2 inline font-mono'>
+<h2 class='mb-2 mt-8 inline-blockfont-mono'>
   <span class='bg-dark-400'>Option&lt;A></span>
 </h2>
 
@@ -225,7 +225,7 @@ fonts:
 
 # fp-ts의 타입 추상화
 
-<h2 class='my-2 inline font-mono'>
+<h2 class='mb-2 mt-8 inline-blockfont-mono'>
   <span class='bg-dark-400'>Either&lt;E,A></span>
 </h2>
 
@@ -233,16 +233,15 @@ fonts:
 
 # fp-ts의 타입 추상화
 
-<h2 class='my-2 inline font-mono'>
-  <span class='bg-dark-400'>Task&lt;A></span>
-  <span class='bg-dark-400 ml-4'>TaskEither&ltE,A></span>
+<h2 class='mb-2 mt-8 inline-blockfont-mono'>
+  <span class='bg-dark-400'>Task&lt;A></span> , <span class='bg-dark-400'>TaskEither&ltE,A></span>
 </h2>
 
 ---
 
 # fp-ts의 유틸 함수
 
-<h2 class='my-2 inline font-mono'>
+<h2 class='mb-2 mt-8 inline-blockfont-mono'>
   <span class='bg-dark-400'>pipe</span>
 </h2>
 
@@ -250,7 +249,7 @@ fonts:
 
 # 타입 추상화를 사용하는 법
 
-<h2 class='my-2 inline font-mono'>
+<h2 class='mb-2 mt-8 inline-blockfont-mono'>
   <span class='bg-dark-400'>map</span>
 </h2>
 
@@ -258,7 +257,7 @@ fonts:
 
 # 타입 추상화를 사용하는 법
 
-<h2 class='my-2 inline font-mono'>
+<h2 class='mb-2 mt-8 inline-blockfont-mono'>
   <span class='bg-dark-400'>chain</span>
 </h2>
 
@@ -266,9 +265,8 @@ fonts:
 
 # 타입 추상화를 사용하는 법
 
-<h2 class='my-2 inline font-mono'>
-  <span class='bg-dark-400'>match</span>
-  <span class='bg-dark-400 ml-4'>fold</span>
+<h2 class='mb-2 mt-8 inline-blockfont-mono'>
+  <span class='bg-dark-400'>match</span> , <span class='bg-dark-400'>fold</span>
 </h2>
 
 ---
@@ -352,7 +350,7 @@ return (
 </ul>
 
 <div v-click class="text-xl mt-8 font-bold">
-  <carbon:arrow-right class='inline'/> 8개의 필드가 있다면, 16개의 상태와 8개의 이벤트 핸들러가 필요합니다.
+  <carbon:arrow-right class='mt-8 inline-block'/> 8개의 필드가 있다면, 16개의 상태와 8개의 이벤트 핸들러가 필요합니다.
 </div>
 
 ---
