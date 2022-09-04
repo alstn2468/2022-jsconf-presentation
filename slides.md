@@ -618,7 +618,7 @@ add3(add3(add3(add3(add3(add2(add1(1)))))));
 ```
 
   <div v-click='2' class='slidev-vclick-target absolute bottom-4 right-4 text-center'>
-    <img src='images/cb-hell.png' class='h-70 mb-2' />
+    <img src='images/cb-hell.png' class='h-70 mb-2 mx-auto' />
     <span class='text-base'>Callback Hell이 떠오르시지 않나요?</span>
   </div>
 
@@ -660,7 +660,7 @@ pipe(1, add1, add2, add3, add3, add3, add3, add3, add3);
 ```
 
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
-    <img src='images/pipe.png' class='h-46 mb-2' />
+    <img src='images/pipe.png' class='h-46 mb-2 mx-auto' />
     <span class='text-sm block mb-1'>
       JavaScript의 pipe 연산자 |>는 제안 Stage 2단계에 있습니다.
     </span>
@@ -680,6 +680,90 @@ pipe(1, add1, add2, add3, add3, add3, add3, add3, add3);
 <h2 class='mb-2 mt-8 inline-block font-mono'>
   <span class='bg-dark-400'>map</span>
 </h2>
+
+```ts
+declare const optionMap: <A, B>(f: (a: A) => B) => (fa: Option<A>) => Option<B>;
+declare const taskMap: <A, B>(f: (a: A) => B) => (fa: Task<A>) => Task<B>;
+declare const eitherMap: <A, B>(f: (a: A) => B) => <E>(fa: Either<E, A>) => Either<E, B>;
+declare const taskEitherMap: <A, B>(f: (a: A) => B) => <E>(fa: TaskEither<E, A>) => TaskEither<E, B>;
+```
+
+<div>
+  <p class='mt-2 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono font-bold'>map</span>함수는 사상 함수라고 하며 <span class='bg-dark-400 font-mono font-bold'>A</span> 타입의 값을 <span class='bg-dark-400 font-mono font-bold'>B</span> 타입의 값으로 바꿀 때 사용할 수 있습니다.
+  </p>
+  <p class='mt-2 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono font-bold'>map</span>함수는 공통적으로 <span class='bg-dark-400 font-mono font-bold'>(f: (a: A) => B)</span> 시그니처를 갖는 함수를 전달받습니다.
+  </p>
+</div>
+
+<div class='relative'>
+
+```ts
+import { fromNullable, map } from 'fp-ts/lib/Option';
+
+pipe(
+  'something value',                   // string
+  fromNullable,                 // Option<string>
+  map((value) => value.length), // Option<number>
+  map((value) => value + 1),    // Option<string>
+);
+```
+
+  <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
+    <img src='images/option-map-some-example.png' class='h-6 mb-2 mx-auto' />
+    <span class='text-sm block'>
+      <span class='bg-dark-400 font-mono font-bold'>Some</span> 타입일 경우 <span class='bg-dark-400 font-mono font-bold'>map</span> 함수에 전달된 함수가 실행됩니다.
+    </span>
+  </div>
+
+</div>
+
+---
+
+# 타입 추상화를 사용하는 법
+
+<h2 class='mb-2 mt-8 inline-block font-mono'>
+  <span class='bg-dark-400'>map</span>
+</h2>
+
+```ts
+declare const optionMap: <A, B>(f: (a: A) => B) => (fa: Option<A>) => Option<B>;
+declare const taskMap: <A, B>(f: (a: A) => B) => (fa: Task<A>) => Task<B>;
+declare const eitherMap: <A, B>(f: (a: A) => B) => <E>(fa: Either<E, A>) => Either<E, B>;
+declare const taskEitherMap: <A, B>(f: (a: A) => B) => <E>(fa: TaskEither<E, A>) => TaskEither<E, B>;
+```
+
+<div>
+  <p class='mt-2 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono font-bold'>map</span>함수는 사상 함수라고 하며 <span class='bg-dark-400 font-mono font-bold'>A</span> 타입의 값을 <span class='bg-dark-400 font-mono font-bold'>B</span> 타입의 값으로 바꿀 때 사용할 수 있습니다.
+  </p>
+  <p class='mt-2 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono font-bold'>map</span>함수는 공통적으로 <span class='bg-dark-400 font-mono font-bold'>(f: (a: A) => B)</span> 시그니처를 갖는 함수를 전달받습니다.
+  </p>
+</div>
+
+<div class='relative'>
+
+```ts
+import { fromPredicate, map } from 'fp-ts/lib/Option';
+
+pipe(
+  1,                                   // number
+  fromPredicate((value) => value < 0), // Option<number>
+  map((value) => value * value),       // Option<number>
+  map((value) => [value]),             // Option<Array<number>>
+);
+```
+
+  <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
+    <img src='images/option-map-none-example.png' class='h-6 mb-2 mx-auto' />
+    <span class='text-sm block'>
+      <span class='bg-dark-400 font-mono font-bold'>None</span> 타입일 경우 <span class='bg-dark-400 font-mono font-bold'>map</span> 함수에 전달된 함수가 실행되지 않습니다.
+    </span>
+  </div>
+
+</div>
 
 ---
 
