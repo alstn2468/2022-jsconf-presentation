@@ -379,28 +379,28 @@ const handleEmailChange = (e) => {
 
 # 공통 검증 함수 만들기
 
-<br>
-
-```ts {all|5|6|7-14|8-12|6|13}
+```ts
 import { fromPredicate } from 'fp-ts/Either';
 import { pipe, type Predicate } from 'fp-ts/function';
 import { every, map } from 'fp-ts/Array';
 
-const validate =
-  <T>(validators: Array<Predicate<T>>, errorMessage: string) =>
-  (value: T) =>
-    pipe(
-      value,
-      fromPredicate(
-        (val) =>
-          pipe(
-            validators,
-            map((fn) => fn(val)),
-            every(Boolean)
-          ),
-        () => errorMessage
-      )
-    );
+const validate = <T>(validators: Array<Predicate<T>>, errorMessage: string) => (value: T) => pipe(
+  value,
+  fromPredicate(
+    (val) => pipe(
+      validators,
+      map(fn => fn(val)),
+      every(Boolean),
+    ),
+    () => errorMessage,
+  ),
+);
 ```
 
+```ts
+const my_validator = validate(myMobileNumberRules, '잘못된 전화번호 형식입니다.');
+
+my_validator('01012345678'); // right('01012345678')
+my_validator('01aabb'); // left('잘못된 전화번호 형식입니다.')
+```
 ---
