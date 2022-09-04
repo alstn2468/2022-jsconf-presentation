@@ -703,14 +703,14 @@ declare const taskEitherMap: <A, B>(f: (a: A) => B) => <E>(fa: TaskEither<E, A>)
 import { fromNullable, map } from 'fp-ts/lib/Option';
 
 pipe(
-  'something value',                   // string
+  'something value',            // string
   fromNullable,                 // Option<string>
   map((value) => value.length), // Option<number>
   map((value) => value + 1),    // Option<string>
 );
 ```
 
-  <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
+  <div v-click class='slidev-vclick-target absolute bottom-4 right-8 text-center'>
     <img src='images/option-map-some-example.png' class='h-6 mb-2 mx-auto' />
     <span class='text-sm block'>
       <span class='bg-dark-400 font-mono font-bold'>Some</span> 타입일 경우 <span class='bg-dark-400 font-mono font-bold'>map</span> 함수에 전달된 함수가 실행됩니다.
@@ -756,7 +756,7 @@ pipe(
 );
 ```
 
-  <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
+  <div v-click class='slidev-vclick-target absolute bottom-4 right-8 text-center'>
     <img src='images/option-map-none-example.png' class='h-6 mb-2 mx-auto' />
     <span class='text-sm block'>
       <span class='bg-dark-400 font-mono font-bold'>None</span> 타입일 경우 <span class='bg-dark-400 font-mono font-bold'>map</span> 함수에 전달된 함수가 실행되지 않습니다.
@@ -772,6 +772,100 @@ pipe(
 <h2 class='mb-2 mt-8 inline-block font-mono'>
   <span class='bg-dark-400'>chain</span>
 </h2>
+
+```ts
+const eiterhChain = <E, A, B>(f: (a: A) => Either<E, B>) => (
+  ma: Either<E, A>,
+): Either<E, B> => (isLeft(ma) ? ma : f(ma.right));
+```
+
+<div>
+  <p class='mt-2 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono font-bold'>chain</span>함수는 다음 계산을 할지말지 결정하기 위해 사용되며
+  </p>
+  <p class='mt-2 mb-2 text-normal'>
+    앞 계산의 반환 값을 이용해 순서대로 계산을 진행합니다.
+  </p>
+</div>
+
+<div class='relative'>
+
+```ts {1-2|4-6|8-12|14} {maxHeight: '100'}
+import { Either, chain, left, right } from 'fp-ts/lib/Either';
+import { pipe } from 'fp-ts/lib/function';
+
+const multiplyByTen = <T>(value: T): Either<string, number> =>
+  typeof value === 'number' ? right(value * 10) : left('Not a number');
+const increment = (value: number): Either<string, number> => right(value + 1);
+
+const func = <T>(value: T) => pipe(
+  value,
+  multiplyByTen,
+  chain(increment),
+);
+
+func('Hello World!');
+```
+
+  <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
+    <img src='images/either-chain-left-example.png' class='h-16 mb-2 mx-auto' />
+    <span class='text-sm block'>
+      <span class='bg-dark-400 font-mono font-bold'>Left</span> 타입일 경우 <span class='bg-dark-400 font-mono font-bold'>chain</span> 함수에 전달된 함수가 실행되지 않습니다.
+    </span>
+  </div>
+
+</div>
+
+---
+
+# 타입 추상화를 사용하는 법
+
+<h2 class='mb-2 mt-8 inline-block font-mono'>
+  <span class='bg-dark-400'>chain</span>
+</h2>
+
+```ts
+const eiterhChain = <E, A, B>(f: (a: A) => Either<E, B>) => (
+  ma: Either<E, A>,
+): Either<E, B> => (isLeft(ma) ? ma : f(ma.right));
+```
+
+<div>
+  <p class='mt-2 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono font-bold'>chain</span>함수는 다음 계산을 할지말지 결정하기 위해 사용되며
+  </p>
+  <p class='mt-2 mb-2 text-normal'>
+    앞 계산의 반환 값을 이용해 순서대로 계산을 진행합니다.
+  </p>
+</div>
+
+<div class='relative'>
+
+```ts {14} {maxHeight: '100'}
+import { Either, chain, left, right } from 'fp-ts/lib/Either';
+import { pipe } from 'fp-ts/lib/function';
+
+const multiplyByTen = <T>(value: T): Either<string, number> =>
+  typeof value === 'number' ? right(value * 10) : left('Not a number');
+const increment = (value: number): Either<string, number> => right(value + 1);
+
+const func = <T>(value: T) => pipe(
+  value,
+  multiplyByTen,
+  chain(increment),
+);
+
+func(10);
+```
+
+  <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
+    <img src='images/either-chain-right-example.png' class='h-16 mb-2 mx-auto' />
+    <span class='text-sm block'>
+      <span class='bg-dark-400 font-mono font-bold'>Right</span> 타입일 경우 <span class='bg-dark-400 font-mono font-bold'>chain</span> 함수에 전달된 함수가 실행 됩니다.
+    </span>
+  </div>
+
+</div>
 
 ---
 
