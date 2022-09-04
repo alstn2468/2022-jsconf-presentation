@@ -578,6 +578,7 @@ const testPhoneNumberPattern = (text: string) => !/[^0-9]/gi.test(text);
 ```
 
 <div v-click>
+
 ```ts
 const myMobileNumer = '010123456';
 
@@ -625,3 +626,241 @@ validatePhoneNumber('01012345678'); // right('01012345678');
 </div>
 
 ---
+
+# 커스텀 훅 만들기
+
+```ts {all|10-11|12-13|15-18|20-33|22|23-30|24|25-29|31|35-48|50} {maxHeight: 500}
+import * as Either from 'fp-ts/Either';
+import * as string  from 'fp-ts/string';
+import { identity, pipe } from 'fp-ts/function';
+
+type StateValidator = {
+  validate: () => boolean,
+  error: string,
+};
+
+const useStateWithValidator = <T>(initialState: T, validator: (v: T) => Either<string, T>):
+[T, (v: T, t?: boolean) => void, StateValidator] => {
+  const [value, setValue] = useState<T>(initialState);
+  const [error, setError] = useState('');
+
+  const changeError = (e: string) => {
+    setError(e);
+    return e;
+  };
+
+  const changeValue = (v: T) => {
+    pipe(
+      validator(v),
+      Either.match(
+        identity,
+        () => pipe(
+          v,
+          setValue,
+          () => string.empty,
+        ),
+      ),
+      changeError,
+    );
+  };
+
+  const stateValidator: StateValidator = {
+    validate(): boolean {
+      return pipe(
+        validator(value),
+        Either.match(identity, () => string.empty),
+        changeError,
+        string.isEmpty,
+      );
+    },
+
+    get error(): string {
+      return error;
+    },
+  };
+
+  return [value, changeValue, stateValidator];
+};
+```
+
+---
+
+# 기존 코드 개선하기
+
+```ts {all|1-21} {maxHeight: 200}
+const [mobileNumber, setMobileNumber] = React.useState<string>('');
+const [mobileNumberError, setMobileNumberError] = React.useState<string>('');
+
+// 올바른 형식의 휴대폰 번호인지 검증하는 함수
+const validateMobileNumber = (value: string): boolean => {
+  if (value == '') {
+    setMobileNumberError('휴대폰 번호를 입력해주세요.');
+    return false;
+  }
+
+  if (!mobileNumberRegex.test(value)
+      || !value.startswith('01')
+      || value.length < 10
+      || value.length > 11
+  ) {
+    setMobileNumberError('휴대폰 번호가 올바르지 않습니다.');
+    return false;
+  }
+
+  return true;
+}
+
+// 휴대폰 번호 input의 onChange 이벤트 핸들러
+const handleMobileNumberChange = (e) => {
+  const { value } = e.target;
+  validateMobileNumber(value);
+  setMobileNumber(value);
+}
+
+// form onsubmit 이벤트 핸들러
+const onSubmit = () => {
+  const validations = [validateMobileNumber(mobileNumber), ...];
+  if (validations.some((valid) => !valid)) {
+    return;
+  }
+  // Submit Form ...
+}
+
+return (
+  ...
+  <input onChange={handleMobileNumberChange} value={mobileNumber} />
+  <span className="error">{mobileNumberError}</span>
+  ...
+)
+
+```
+
+---
+
+# 기존 코드 개선하기
+
+```ts {1|3-7} {maxHeight: 200}
+const [mobileNumber, setMobileNumber, mobileNumberValidator] = useStateWithValidator<string>('', validatePhoneNumber);
+
+// 휴대폰 번호 input의 onChange 이벤트 핸들러
+const handleMobileNumberChange = (e) => {
+  const { value } = e.target;
+  validateMobileNumber(value);
+  setMobileNumber(value);
+}
+
+// form onsubmit 이벤트 핸들러
+const onSubmit = () => {
+  const validations = [validateMobileNumber(mobileNumber), ...];
+  if (validations.some((valid) => !valid)) {
+    return;
+  }
+  // Submit Form ...
+}
+
+return (
+  ...
+  <input onChange={handleMobileNumberChange} value={mobileNumber} />
+  <span className="error">{mobileNumberError}</span>
+  ...
+)
+
+```
+
+---
+
+# 기존 코드 개선하기
+
+```ts {3-4|6-13} {maxHeight: 200}
+const [mobileNumber, setMobileNumber, mobileNumberValidator] = useStateWithValidator<string>('', validatePhoneNumber);
+
+// 휴대폰 번호 input의 onChange 이벤트 핸들러
+const handleMobileNumberChange = (e) => setPhoneNumber(e.target.value);
+
+// form onsubmit 이벤트 핸들러
+const onSubmit = () => {
+  const validations = [validateMobileNumber(mobileNumber), ...];
+  if (validations.some((valid) => !valid)) {
+    return;
+  }
+  // Submit Form ...
+}
+
+return (
+  ...
+  <input onChange={handleMobileNumberChange} value={mobileNumber} />
+  <span className="error">{mobileNumberError}</span>
+  ...
+)
+
+```
+
+---
+
+# 기존 코드 개선하기
+
+```ts {6-19|21-26} {maxHeight: 200}
+const [mobileNumber, setMobileNumber, mobileNumberValidator] = useStateWithValidator<string>('', validatePhoneNumber);
+
+// 휴대폰 번호 input의 onChange 이벤트 핸들러
+const handleMobileNumberChange = (e) => setPhoneNumber(e.target.value);
+
+// form onsubmit 이벤트 핸들러
+const onSubmit = () => {
+  const validators = [phoneNumberValidator, ...];
+  const isInvalid = validators
+      .map((validator) => validator.validate())
+      .some((valid) => !valid);
+
+  if (isInvalid) {
+    // Do something when input is invalid
+    return;
+  }
+
+  // Submit Form ...
+}
+
+return (
+  ...
+  <input onChange={handleMobileNumberChange} value={mobileNumber} />
+  <span className="error">{mobileNumberError}</span>
+  ...
+)
+```
+
+---
+<script>
+</script>
+---
+```ts {21-27|all} {maxHeight: 2}
+const [mobileNumber, setMobileNumber, mobileNumberValidator] = useStateWithValidator<string>('', validatePhoneNumber);
+
+// 휴대폰 번호 input의 onChange 이벤트 핸들러
+const handleMobileNumberChange = (e) => setPhoneNumber(e.target.value);
+
+// form onsubmit 이벤트 핸들러
+const onSubmit = () => {
+  const validators = [phoneNumberValidator, ...];
+  const isInvalid = validators
+      .map((validator) => validator.validate())
+      .some((valid) => !valid);
+
+  if (isInvalid) {
+    // Do something when input is invalid
+    return;
+  }
+
+  // Submit Form ...
+}
+
+return (
+  ...
+  <input onChange={handleMobileNumberChange} value={mobileNumber} />
+  <span className="error">{mobileNumberValidator.error}</span>
+  ...
+)
+
+```
+
+---
+
