@@ -1,7 +1,7 @@
 ---
 theme: geist
 lineNumbers: true
-favicon: './images/favicon.ico'
+favicon: 'images/favicon.ico'
 ---
 
 # 프론트엔드에서 함수형을<br/>추구하면 안되는 걸까?
@@ -29,17 +29,80 @@ favicon: './images/favicon.ico'
 
 # 자기소개
 
-![minsu.kim](./images/minsu.kim.png)
+<div class='flex'>
+  <img class='mr-8' src='images/minsu.kim.png' />
 
-<ul>
-  <li>김민수</li>
-  <li>데브시스터즈, Software Engineer (Frontend Engineer)</li>
-  <li>JavaScript, TypeScript, ReactJS, GatsbyJS, GraphQL, Functional Programming, etc…</li>
-  <li><carbon-logo-github /> alstn2468</li>
-  <li><carbon-logo-instagram /> minsu.\_.0102</li>
-  <li><carbon-logo-linkedin /> minsu-kim-developer</li>
-  <li><carbon-rss /> https://alstn2468.github.io</li>
-</ul>
+  <div class='flex flex-col justify-between'>
+    <div>
+      <p class='text-3xl font-bold my-0 mb-4'>김민수</p>
+      <p class='text-2xl my-0 mb-2'>
+        데브시스터즈<br/>
+        Software Engineer <span class='text-sm text-light-100'>(Frontend Engineer)</span>
+      </p>
+      <p class='text-base font-light my-0 mb-2 text-gray-400'>
+        JavaScript, TypeScript, ReactJS, GatsbyJS,<br/>
+        GraphQL, Functional Programming, …
+      </p>
+    </div>
+    <ul>
+      <li class='my-0 mb-0.5 text-sm'>
+        <carbon-logo-github />
+        <span class='ml-2'>alstn2468</span>
+      </li>
+      <li class='my-0 mb-0.5 text-sm'>
+        <carbon-logo-instagram />
+        <span class='ml-2'>minsu._.0102</span>
+      </li>
+      <li class='my-0 mb-0.5 text-sm'>
+        <carbon-logo-linkedin />
+        <span class='ml-2'>minsu-kim-developer</span>
+      </li>
+      <li class='my-0 mb-0.5 text-sm'>
+        <carbon-rss />
+        <span class='ml-2'>https://alstn2468.github.io</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+---
+
+# 자기소개
+
+<div class='flex'>
+  <img class='mr-8' src='images/changhui.lee.png' />
+
+  <div class='flex flex-col justify-between'>
+    <div>
+      <p class='text-3xl font-bold my-0 mb-4'>이창희</p>
+      <p class='text-2xl my-0 mb-2'>
+        前 데브시스터즈<br/>
+        Software Engineer <span class='text-sm text-light-100'>(Frontend/Backend Engineer)</span>
+      </p>
+      <p class='text-base font-light my-0 mb-2 text-gray-400'>
+        JavaScript, TypeScript, Golang, Python, …
+      </p>
+    </div>
+    <ul>
+      <li class='my-0 mb-0.5 text-sm'>
+        <carbon-logo-github />
+        <span class='ml-2'>blurfx</span>
+      </li>
+      <li class='my-0 mb-0.5 text-sm'>
+        <carbon-logo-instagram />
+        <span class='ml-2'>blureffect</span>
+      </li>
+      <li class='my-0 mb-0.5 text-sm'>
+        <carbon-logo-linkedin />
+        <span class='ml-2'>blurfx</span>
+      </li>
+      <li class='my-0 mb-0.5 text-sm'>
+        <carbon-rss />
+        <span class='ml-2'>https://xo.dev</span>
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 
