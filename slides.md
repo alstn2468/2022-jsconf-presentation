@@ -109,16 +109,106 @@ favicon: 'images/favicon.ico'
 # 함수형 프로그래밍이란?
 
 <div class='relative'>
-  <img class='h-80 rounded mx-auto mt-10' src='images/what-is-fp.png' />
+  <img class='h-80 rounded mx-auto' src='images/what-is-fp.png' />
+  <mdi-close v-click class='slidev-vclick-target h-100 w-100 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-red-700' />
 </div>
 
 ---
 
 # 함수형 프로그래밍이란?
 
-<div class='relative'>
-  <img class='h-80 rounded mx-auto mt-10' src='images/what-is-fp.png' />
-  <mdi-close class='h-100 w-100 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-red-700' />
+<p class='text-xl mb-8'>
+  데이터를 수학적 <strong>계산 함수(순수 함수)</strong>로 처리하고<br/>
+  <strong>사이드 이펙트를 멀리</strong>하는 프로그래밍 패러다임
+</p>
+
+<p class='text-xl mb-8 slidev-vclick-target' v-click='1'>
+  프론트엔드 개발을 하면서 <strong>사이드 이펙트</strong>를 멀리할 수 있나요?<br/>
+  <span class='text-orange-400'>DOM 조작, 데이터 패칭 모두 사이드 이펙트를 발생</span>시킬 것 같은데요?
+</p>
+
+<p class='text-xl slidev-vclick-target' v-click='2'>
+  여러 방법을 통해 <strong>불순 함수</strong>와 <strong>순수 함수</strong>를 <strong>함께 관리</strong>하고<br/>
+  이러한 <strong>함수들을 조합</strong>해 프로그램을 만드는 패러다임
+</p>
+
+---
+
+# 팀에 함수형 프로그래밍 도입하기
+
+<div class='flex items-center'>
+  <img class='h-50 rounded' src='images/team-fp.png' />
+  <div class='slidev-vclick-target flex items-center' v-click>
+    <mdi-arrow-right-bold class='h-30 w-30 text-red-700' />
+    <div class='text-center'>
+      <img class='h-80 rounded mx-auto' src='images/team-study.png' />
+      <p>팀 내부에서 함수형 프로그래밍에 대한 관심이 존재</p>
+    </div>
+  </div>
+</div>
+
+---
+
+# 팀에 함수형 프로그래밍 도입하기
+
+<div class='flex'>
+  <div class='text-center flex flex-col'>
+    <img class='h-70 rounded' src='images/many-input-form.png' />
+    <p>진행하던 프로젝트에 <strong>복잡한 상태를 관리</strong>해야 하는 폼이 존재</p>
+  </div>
+
+  <div class='slidev-vclick-target flex items-center ml-8' v-click>
+    <mdi-arrow-right-bold class='h-20 w-20 text-red-700' />
+    <div class='flex flex-col justify-center ml-8'>
+      <p class='m-0 mb-2'>하나의 폼에 <strong>8개의 입력</strong>이 존재</p>
+      <p class='m-0 mb-2'>각각 <strong>다른 검증 로직</strong>이 존재</p>
+      <p class='m-0 mb-2'><strong>공통으로 사용</strong>할 수 있는 검증 과정 존재</p>
+    </div>
+  </div>
+</div>
+
+---
+
+# 팀에 함수형 프로그래밍 도입하기
+
+<div class='flex items-center'>
+  <div class='text-center flex flex-col'>
+    <img class='h-40 rounded' src='images/fp-ts.png' />
+    <p>fp-ts</p>
+  </div>
+
+  <ol class='ml-8 h-80 flex flex-col justify-center'>
+    <li class='m-0 mb-2'>
+      1. Haskell, PureScript, Scala 기반의 인기있는 <strong>타입 추상화</strong>를 제공
+    </li>
+    <li class='m-0 mb-2'>
+      2. 구현된 타입 클래스는 <strong>안전하게 조합</strong>될 수 있도록 <strong>추상 대수학과 범주론에 기반</strong>
+    </li>
+    <li class='m-0 mb-2'>
+      3. Typescript에서 지원하지 않는 <strong>HKT</strong>(Higher Kinded Types) 구현
+    </li>
+    <li class='m-0 mb-2'>
+      4. io-ts 같이 사용할 수 있는 많음 라이브러리 또한 존재 (fp-ts/ecosystem)
+    </li>
+  </ol>
+</div>
+
+<div class='flex flex-col fixed bottom-6 right-10 text-xs'>
+  <a class='text-gray-400 underline mb-1' href='https://github.com/gcanti/fp-ts' target='_blank'>
+    https://github.com/gcanti/fp-ts
+  </a>
+  <a class='text-gray-400 underline mb-1' href='https://github.com/gcanti/io-ts' target='_blank'>
+    https://github.com/gcanti/io-ts
+  </a>
+  <a class='text-gray-400 underline mb-1' href='https://github.com/gcanti/monocle-ts' target='_blank'>
+    https://github.com/gcanti/monocle-ts
+  </a>
+  <a class='text-gray-400 underline mb-1' href='https://gcanti.github.io/fp-ts/ecosystem/' target='_blank'>
+    https://gcanti.github.io/fp-ts/ecosystem/
+  </a>
+  <a class='text-gray-400 underline mb-1' href='https://www.cl.cam.ac.uk/~jdy22/papers/lightweight-higher-kinded-polymorphism.pdf' target='_blank'>
+    Lightweight higher-kinded polymorphism
+  </a>
 </div>
 
 ---
