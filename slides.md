@@ -2,6 +2,8 @@
 theme: geist
 highlighter: shiki
 favicon: 'images/favicon.ico'
+fonts:
+  mono: 'Noto Sans Mono'
 ---
 
 # 프론트엔드에서 함수형을<br/>추구하면 안되는 걸까?
@@ -210,6 +212,64 @@ favicon: 'images/favicon.ico'
     Lightweight higher-kinded polymorphism
   </a>
 </div>
+
+---
+
+# fp-ts의 타입 추상화
+
+<h2 class='my-2 inline font-mono'>
+  <span class='bg-dark-400'>Option&lt;A></span>
+</h2>
+
+---
+
+# fp-ts의 타입 추상화
+
+<h2 class='my-2 inline font-mono'>
+  <span class='bg-dark-400'>Either&lt;E,A></span>
+</h2>
+
+---
+
+# fp-ts의 타입 추상화
+
+<h2 class='my-2 inline font-mono'>
+  <span class='bg-dark-400'>Task&lt;A></span>
+  <span class='bg-dark-400 ml-4'>TaskEither&ltE,A></span>
+</h2>
+
+---
+
+# fp-ts의 유틸 함수
+
+<h2 class='my-2 inline font-mono'>
+  <span class='bg-dark-400'>pipe</span>
+</h2>
+
+---
+
+# 타입 추상화를 사용하는 법
+
+<h2 class='my-2 inline font-mono'>
+  <span class='bg-dark-400'>map</span>
+</h2>
+
+---
+
+# 타입 추상화를 사용하는 법
+
+<h2 class='my-2 inline font-mono'>
+  <span class='bg-dark-400'>chain</span>
+</h2>
+
+---
+
+# 타입 추상화를 사용하는 법
+
+<h2 class='my-2 inline font-mono'>
+  <span class='bg-dark-400'>match</span>
+  <span class='bg-dark-400 ml-4'>fold</span>
+</h2>
 
 ---
 
