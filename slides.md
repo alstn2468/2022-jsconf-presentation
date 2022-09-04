@@ -965,13 +965,13 @@ pipe(
 
 # 우리가 폼에서 해야하는 일
 
-<ol>
-  <li>1. 사용자에게 값 입력받기</li>
-  <li>2. 입력된 값 검증하기</li>
-  <li>3. 검증에 실패했다면 오류 메시지 보여주기</li>
+<ol class="list-decimal ml-6 text-2xl">
+  <li>사용자에게 값 입력받기</li>
+  <li>입력된 값 검증하기</li>
+  <li>검증에 실패했다면 오류 메시지 보여주기</li>
 </ol>
 
-<img src="/images/part2-2.png" class="m-5 h-60 rounded shadow" />
+<img src="/images/part2-2.png" class="my-5 h-74 rounded shadow" />
 
 ---
 
