@@ -790,7 +790,7 @@ const eiterhChain = <E, A, B>(f: (a: A) => Either<E, B>) => (
 
 <div class='relative'>
 
-```ts {1-2|4-6|8-12|14} {maxHeight: '100'}
+```ts {0|1-2|4-6|8-12|14} {maxHeight: '100'}
 import { Either, chain, left, right } from 'fp-ts/lib/Either';
 import { pipe } from 'fp-ts/lib/function';
 
@@ -841,7 +841,7 @@ const eiterhChain = <E, A, B>(f: (a: A) => Either<E, B>) => (
 
 <div class='relative'>
 
-```ts {14} {maxHeight: '100'}
+```ts {0|14} {maxHeight: '100'}
 import { Either, chain, left, right } from 'fp-ts/lib/Either';
 import { pipe } from 'fp-ts/lib/function';
 
@@ -875,21 +875,101 @@ func(10);
   <span class='bg-dark-400'>match</span> <span class='bg-dark-400'>fold</span>
 </h2>
 
+```ts
+declare const optionMatch: <A, B>(onNone: () => B, onSome: (a: A) => B) =>
+  (ma: Option<A>) => B;
+declare const eitherMatch: <E, A, B>(onNone: (e: E) => B, onSome: (a: A) => B) =>
+  (ma: Either<E, A>) => B;
+```
+
+<div>
+  <p class='mt-2 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono font-bold'>match</span>와 <span class='bg-dark-400 font-mono font-bold'>fold</span> 함수는 동일한 기능을 수행하며 가능한 케이스에 따라 실행할 함수를 받아 실행합니다.
+  </p>
+</div>
+
+<div class='relative'>
+
+```ts {0|1-2|4-8} {maxHeight: '100'}
+import { fromPredicate, match } from 'fp-ts/lib/Option';
+import { pipe } from 'fp-ts/lib/function';
+
+pipe(
+  2,
+  fromPredicate((value) => value !== 0),
+  match(() => 0, (value) => 10 / value),
+);
+```
+
+  <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
+    <img src='images/option-match-some-example.png' class='h-16 mb-2 mx-auto' />
+    <span class='text-sm block'>
+      <span class='bg-dark-400 font-mono font-bold'>Option</span> 의 <span class='bg-dark-400 font-mono font-bold'>Some</span> 타입일 경우 두 번째 인자로 전달된 함수가 실행된다.
+    </span>
+  </div>
+
+</div>
+
+---
+
+# 타입 추상화를 사용하는 법
+
+<h2 class='mb-2 mt-8 inline-block font-mono'>
+  <span class='bg-dark-400'>match</span> <span class='bg-dark-400'>fold</span>
+</h2>
+
+```ts
+declare const optionMatch: <A, B>(onNone: () => B, onSome: (a: A) => B) =>
+  (ma: Option<A>) => B;
+declare const eitherMatch: <E, A, B>(onNone: (e: E) => B, onSome: (a: A) => B) =>
+  (ma: Either<E, A>) => B;
+```
+
+<div>
+  <p class='mt-2 mb-2 text-normal'>
+    <span class='bg-dark-400 font-mono font-bold'>match</span>와 <span class='bg-dark-400 font-mono font-bold'>fold</span> 함수는 동일한 기능을 수행하며 가능한 케이스에 따라 실행할 함수를 받아 실행합니다.
+  </p>
+</div>
+
+<div class='relative'>
+
+```ts {0|4-8} {maxHeight: '100'}
+import { fromPredicate, match } from 'fp-ts/lib/Option';
+import { pipe } from 'fp-ts/lib/function';
+
+pipe(
+  0,
+  fromPredicate((value) => value !== 0),
+  match(() => 0, (value) => 10 / value),
+);
+```
+
+  <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
+    <img src='images/option-match-none-example.png' class='h-16 mb-2 mx-auto' />
+    <span class='text-sm block'>
+      <span class='bg-dark-400 font-mono font-bold'>Option</span> 의 <span class='bg-dark-400 font-mono font-bold'>None</span> 타입일 경우 첫 번째 인자로 전달된 함수가 실행된다.
+    </span>
+  </div>
+
+</div>
+
 ---
 
 # 현실의 문제 해결 하기
 
 폼에 8개의 입력이 존재하는데, 이를 어떻게 우아하게 처리할 수 있을까?
 
-<img src="/images/part2-1.png" class="m-5 h-80 rounded shadow" />
+<img src="/images/part2-1.png" class="m-5 h-100 rounded shadow" />
 
 ---
 
 # 우리가 폼에서 해야하는 일
 
-1. 사용자에게 값 입력받기
-2. 입력된 값 검증하기
-3. 검증에 실패했다면 오류 메시지 보여주기
+<ol>
+  <li>1. 사용자에게 값 입력받기</li>
+  <li>2. 입력된 값 검증하기</li>
+  <li>3. 검증에 실패했다면 오류 메시지 보여주기</li>
+</ol>
 
 <img src="/images/part2-2.png" class="m-5 h-60 rounded shadow" />
 
