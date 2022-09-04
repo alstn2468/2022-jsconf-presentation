@@ -388,7 +388,7 @@ getOptionNumber(1);    // { _tag: 'Some', value: 1 }
 
 ---
 
-```ts {all|1-2|4-21|23-28|31-37|39-44} {maxHeight: 200}
+```ts {all|1-2|4-21|23-28|31-37|39-44} {maxHeight: '450px'}
 const [mobileNumber, setMobileNumber] = React.useState<string>('');
 const [mobileNumberError, setMobileNumberError] = React.useState<string>('');
 
@@ -456,7 +456,7 @@ return (
 layout: center
 ---
 
-```ts
+```ts {maxHeight: '450px'}
 const [mobileNumber, setMobileNumber] = React.useState<string>('');
 const [mobileNumberError, setMobileNumberError] = React.useState<string>('');
 const [name, setName] = React.useState<string>('');
@@ -536,7 +536,7 @@ layout: center
 
 # 공통 검증 함수 만들기
 
-```ts {all|5|6|7-14|8-12|6|13}
+```ts {all|5|6|7-14|8-12|6|13} {maxHeight: '450px'}
 import { fromPredicate } from 'fp-ts/Either';
 import { pipe, type Predicate } from 'fp-ts/function';
 import { every, map } from 'fp-ts/Array';
@@ -629,7 +629,7 @@ validatePhoneNumber('01012345678'); // right('01012345678');
 
 # 커스텀 훅 만들기
 
-```ts {all|10-11|12-13|15-18|20-33|22|23-30|24|25-29|31|35-48|50} {maxHeight: 500}
+```ts {all|10-11|12-13|15-18|20-33|22|23-30|24|25-29|31|35-48|50} {maxHeight: '450px'}
 import * as Either from 'fp-ts/Either';
 import * as string  from 'fp-ts/string';
 import { identity, pipe } from 'fp-ts/function';
@@ -687,7 +687,7 @@ const useStateWithValidator = <T>(initialState: T, validator: (v: T) => Either<s
 
 # 기존 코드 개선하기
 
-```ts {all|1-21} {maxHeight: 200}
+```ts {all|1-21} {maxHeight: '450px'}
 const [mobileNumber, setMobileNumber] = React.useState<string>('');
 const [mobileNumberError, setMobileNumberError] = React.useState<string>('');
 
@@ -739,7 +739,7 @@ return (
 
 # 기존 코드 개선하기
 
-```ts {1|3-7} {maxHeight: 200}
+```ts {1|3-7} {height: '200px'}
 const [mobileNumber, setMobileNumber, mobileNumberValidator] = useStateWithValidator<string>('', validatePhoneNumber);
 
 // 휴대폰 번호 input의 onChange 이벤트 핸들러
@@ -771,7 +771,7 @@ return (
 
 # 기존 코드 개선하기
 
-```ts {3-4|6-13} {maxHeight: 200}
+```ts {3-4|6-13} {maxHeight: '450px'}
 const [mobileNumber, setMobileNumber, mobileNumberValidator] = useStateWithValidator<string>('', validatePhoneNumber);
 
 // 휴대폰 번호 input의 onChange 이벤트 핸들러
@@ -799,7 +799,7 @@ return (
 
 # 기존 코드 개선하기
 
-```ts {6-19|21-26} {maxHeight: 200}
+```ts {6-19|21-26} {maxHeight: '450px'}
 const [mobileNumber, setMobileNumber, mobileNumberValidator] = useStateWithValidator<string>('', validatePhoneNumber);
 
 // 휴대폰 번호 input의 onChange 이벤트 핸들러
@@ -829,10 +829,8 @@ return (
 ```
 
 ---
-<script>
-</script>
----
-```ts {21-27|all} {maxHeight: 2}
+
+```ts {21-27|all} {maxHeight: '450px'}
 const [mobileNumber, setMobileNumber, mobileNumberValidator] = useStateWithValidator<string>('', validatePhoneNumber);
 
 // 휴대폰 번호 input의 onChange 이벤트 핸들러
@@ -864,3 +862,43 @@ return (
 
 ---
 
+# 정리
+
+<ul class="list-disc ml-6 text-lg">
+  <li>함수형 프로그래밍이 대충 무엇인지</li>
+  <li>fp-ts에 어떤 타입과 유틸리티 함수가 존재하고 어떻게 쓰는지</li>
+  <li>값 검증에 필요한 로직들을 fp-ts를 사용해 함수형으로 추상화하는 방법</li>
+  <li>공통 부분 문제를 해결하는 함수와 커스텀 훅을 만들어 사용하는 입장에서의 구현을 단순화 하는 방법</li>
+</ul>
+---
+layout: two-cols
+---
+
+## 좋았던 점
+
+<ul class="list-disc ml-6 text-lg">
+  <li>대수적 타입(ADT)를 사용하여 문제를 더 잘 정의하고 해결할 수 있었음</li>
+  <li>코드를 작성하며 함수형 사고를 하게 됨</li>
+  <ul class="list-disc ml-6 text-lg">
+    <li>과연 이 함수에서 이 일을 하는 것이 옳을까?</li>
+    <li>사이드 이펙트 최소화 하기</li>
+  </ul>
+  <li>팀에서 새로운 기술이나 개념을 도입할 때 어떻게 해야할지 알게 됨</li>
+</ul>
+
+::right::
+
+## 아쉬웠던 점
+
+<ul class="list-disc ml-6 text-lg">
+  <li>fp-ts를 써보지 않았거나 혹은 함수형 프로그래밍 경험이 없다면, 코드 작성에 어려움을 겪을수도 있음</li>
+  <li>함수형 프로그래밍을 적용하지 않고 그냥 작성하는 코드가더 가독성이 좋고 짧은 경우도 있었음</li>
+  <ul class="list-disc ml-6 text-lg">
+    <li>예) Array 데이터를 사용하여 컴포넌트로 매핑하는 코드</li>
+  </ul>
+  <li>최신 자료가 많지 않다</li>
+  <ul class="list-disc ml-6 text-lg">
+    <li>fp-ts 메인테이너가 작성한 글이 있지만, 오래되어 outdated 된 내용이 많음</li>
+  </ul>
+  <li>fp-ts 문서가 친절한 편은 아니다.</li>
+</ul>
