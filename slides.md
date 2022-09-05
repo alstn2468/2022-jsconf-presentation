@@ -176,6 +176,7 @@ fonts:
 
 # 팀에 함수형 프로그래밍 도입하기
 
+<div class='relative h-100'>
 <div class='flex items-center mt-8'>
   <div class='text-center flex flex-col'>
     <img class='h-40 rounded' src='/images/fp-ts.png' />
@@ -187,18 +188,18 @@ fonts:
       1. Haskell, PureScript, Scala 기반의 인기있는 <strong>타입 추상화</strong>를 제공
     </li>
     <li class='m-0 mb-2'>
-      2. 구현된 타입 클래스는 <strong>안전하게 조합</strong>될 수 있도록 <strong>추상 대수학과 범주론에 기반</strong>
+      1. 구현된 타입 클래스는 <strong>안전하게 조합</strong>될 수 있도록 <strong>추상 대수학과 범주론에 기반</strong>
     </li>
     <li class='m-0 mb-2'>
-      3. Typescript에서 지원하지 않는 <strong>HKT</strong>(Higher Kinded Types) 구현
+      1. Typescript에서 지원하지 않는 <strong>HKT</strong>(Higher Kinded Types) 구현
     </li>
     <li class='m-0 mb-2'>
-      4. io-ts 같이 사용할 수 있는 많음 라이브러리 또한 존재 (fp-ts/ecosystem)
+      1. io-ts 같이 사용할 수 있는 많음 라이브러리 또한 존재 (fp-ts/ecosystem)
     </li>
   </ol>
 </div>
 
-<div class='flex flex-col fixed bottom-6 right-10 text-xs'>
+<div class='flex flex-col absolute bottom-6 right-10 text-xs'>
   <a class='text-gray-400 underline mb-1' href='https://github.com/gcanti/fp-ts' target='_blank'>
     https://github.com/gcanti/fp-ts
   </a>
@@ -214,6 +215,7 @@ fonts:
   <a class='text-gray-400 underline mb-1' href='https://www.cl.cam.ac.uk/~jdy22/papers/lightweight-higher-kinded-polymorphism.pdf' target='_blank'>
     Lightweight higher-kinded polymorphism
   </a>
+</div>
 </div>
 
 ---
@@ -1650,3 +1652,9 @@ layout: two-cols
   </ul>
   <li>fp-ts의 공식 문서가 친절한 편은 아닙니다.</li>
 </ul>
+
+---
+layout: center
+---
+
+# 감사합니다.

@@ -1,0 +1,16 @@
+h1, h2 {
+  margin-top: 0;
+}
+
+#slide-content {
+  padding: 0;
+}
+
+.cover {
+  padding: 2rem 3rem;
+}
+
+.slidev-layout {
+  padding: 2rem 3rem;
+  width: 100%;
+}
