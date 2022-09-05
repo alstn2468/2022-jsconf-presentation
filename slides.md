@@ -4,6 +4,7 @@ highlighter: shiki
 favicon: '/images/favicon.ico'
 title: 프론트엔드에서 함수형을 추구하면 안되는 걸까?
 info: '함수형 프로그래밍에 대한 이론과 프론트엔드 개발을 하면서 함수형 프로그래밍을 적용한 사례를 소개합니다.'
+colorSchema: 'dark'
 fonts:
   mono: 'Noto Sans Mono'
 ---
