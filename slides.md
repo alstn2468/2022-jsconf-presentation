@@ -411,7 +411,7 @@ import { fromNullable } from 'fp-ts/lib/Either';
 const getEitherString = fromNullable('defaultValue');
 
 getEitherString(null);    // { _tag: 'Left', left: 'defaultValue' }
-getEtehrStrng(undefined); // { _tag: 'Left', left: 'defaultValue' }
+getEitherString(undefined); // { _tag: 'Left', left: 'defaultValue' }
 getEitherString('value'); // { _tag: 'Right', right: 'value' }
 ```
 
