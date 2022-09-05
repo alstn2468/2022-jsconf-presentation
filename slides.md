@@ -466,7 +466,7 @@ type TaskEither<E, A> = Task<Either<E, A>>;
     <span class='bg-dark-400 font-mono font-bold'>Task&ltA></span>는 <strong>절대 실패하지</strong> 않는 비동기 계산에 사용됩니다.
   </p>
   <p class='mt-2 mb-2 text-normal'>
-    실패할 수 있는 비동기 계산은<span class='bg-dark-400 font-mono font-bold'>TaskEither&ltE,A></span>를 사용할 수 있습니다.
+    실패할 수 있는 비동기 계산은 <span class='bg-dark-400 font-mono font-bold'>TaskEither&ltE,A></span>를 사용할 수 있습니다.
   </p>
 </div>
 
