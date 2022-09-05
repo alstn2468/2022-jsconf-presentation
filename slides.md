@@ -30,6 +30,10 @@ fonts:
   </a>
 </div>
 
+<!--
+"프론트엔드에서 함수형을 추구하면 안되는 걸까?"라는 주제 발표 시작하겠습니다.
+-->
+
 ---
 
 # 자기소개
@@ -70,6 +74,14 @@ fonts:
   </div>
 </div>
 
+<!--
+안녕하세요.<br/>
+
+저는 데브시스터즈에서 웹 프론트엔드 개발자로 근무하고 있는 김민수라고 합니다.<br/>
+
+웹 프론트엔드에 사용되는 전반적인 기술에 관심이 많으며, 최근에는 함수형 프로그래밍에 관심이 많습니다.
+-->
+
 ---
 
 # 자기소개
@@ -109,6 +121,10 @@ fonts:
   </div>
 </div>
 
+<!--
+창희님 소개
+-->
+
 ---
 
 # 함수형 프로그래밍이란?
@@ -117,6 +133,16 @@ fonts:
   <img class='h-80 rounded mx-auto' src='/images/what-is-fp.png' />
   <mdi-close v-click class='slidev-vclick-target h-100 w-100 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-red-700' />
 </div>
+
+<!--
+여러분들은 함수형 프로그래밍하면 무엇이 먼저 떠오르시나요?<br/>
+
+아마 사진처럼 모나드, 범주론과 같이 복잡하고 어려운 것들이 먼저 떠오르실 것 입니다.<br/>
+
+===========================<br/>
+
+이번 발표에서는 이론적인 내용들은 조금만 설명하고 실제 적용 사례에 대해서 소개해보겠습니다.
+-->
 
 ---
 
@@ -137,6 +163,18 @@ fonts:
   이러한 <strong>함수들을 조합</strong>해 프로그램을 만드는 패러다임
 </p>
 
+<!--
+함수형 프로그래밍은 데이터를 순수 함수로 처리하고 사이드 이펙트를 멀리하는 프로그래밍 패러다임이라는 것 까지는 알고 계실 것 입니다.
+
+===========================<br/>
+
+여러분들은 프론트엔드에서 사용되는 DOM 조작, 비동기 데이터 패칭 동작들 모두 사이드 이펙트를 발생시키지 않나요? 하는 의문을 품으실 수 있으실 겁니다.
+
+============================<br/>
+
+함수형 프로그래밍은 사이드 이펙트를 사용하지 않는 것이 아닌 순수 함수와 함께 관리하고 여기에서 생겨난 함수들을 조합해 프로그램을 만드는 패러다임 입니다.
+-->
+
 ---
 
 # 팀에 함수형 프로그래밍 도입하기
@@ -151,6 +189,16 @@ fonts:
     </div>
   </div>
 </div>
+
+<!--
+팀에 함수형 프로그래밍은 어떻게 도입하게 되었을까요?<br/>
+
+제가 먼저 스터디를 진행하며 먼저 관련 이론들을 공부하고 있었습니다.
+
+===========================<br/>
+
+그러던 중 실제 프로젝트에 간단한 함수형 방법론들을 적용하게 되었고 팀원들이 관심을 갖게되어 같이 스터디를 진행하게 되었었습니다.<br/>
+-->
 
 ---
 
@@ -171,6 +219,18 @@ fonts:
     </div>
   </div>
 </div>
+
+<!--
+팀 내부에서 스터디를 진행하던 중 뒤에서 설명하게될 사진과 같이 복잡한 상태를 관리해야하는 경우가 생겼었습니다.<br/>
+
+===========================<br/>
+
+하나의 폼에 8개의 입력이 존재했고, 각각 다른 유효성 검증 과정이 존재했습니다.<br/>
+
+또한 검증 과정 중에는 공통으로 사용할 수 있는 것 또한 있었습니다.<br/>
+
+이런 문제를 어떻게 잘 해결할 수 있을까 고민하다 저희는 fp-ts를 이용한 함수형 프로그래밍을 도입하는 것으로 결정하게 되었습니다.
+-->
 
 ---
 
@@ -218,6 +278,18 @@ fonts:
 </div>
 </div>
 
+<!--
+많은 함수형 프로그래밍 라이브러리 중에서 fp-ts를 선택한 이유는 화면과 같습니다.<br/>
+
+많은 함수형 프로그래밍 언어에서 지원하는 타입 추상화를 제공합니다.<br/>
+
+이 추상화들은 함수형 프로그래밍의 기반 이론을 따르고 있습니다.<br/>
+
+또한 라이브러리 메인테이너가 개발한 다른 같이 운용할 수 있는 라이브러리 생태계가 존재했습니다.<br/>
+
+이제 실제 사례를 살펴보기 전에 필요한 몇가지 타입 추상화와 유틸 함수들을 소개해보겠습니다.
+-->
+
 ---
 
 # fp-ts의 타입 추상화
@@ -247,6 +319,20 @@ type Option<A> = None | Some<A>;
     <span class='bg-dark-400 font-mono font-bold'>Option&ltA></span>는 <strong>실패할 수 있는 계산</strong>의 효과를 나타냅니다.
   </p>
 </div>
+
+<!--
+Option 타입 추상화는 None 타입과 Some 타입으로 구성된 합타입 입니다.<br/>
+
+Option 타입은 선택적인 A 타입 값을 갖는 컨테이너 입니다.<br/>
+
+A 타입 값이 존재한다면 Option 타입은 Some 인스턴스 입니다.<br/>
+
+값이 존재하지 않는다면 Option 타입은 None 인스턴스 입니다.<br/>
+
+Option 타입은 일반적으로 실패할 수 있는 계산의 효과를 나타냅니다.
+
+이제 몇가지 예시들을 살펴보겠습니다.
+-->
 
 ---
 
@@ -278,6 +364,28 @@ findIndex(arr, (n) => n === 1); // { _tag: 'Some', value: 0 }
 findIndex(arr, (n) => n === 4); // { _tag: 'None' }
 ```
 
+<!--
+Option 타입은 첫번째 라인과 같이 가져올 수 있습니다.<br/>
+
+Some과 None을 이용해 Option 타입에 사용될 인스턴스들을 생성할 수 있습니다.<br/>
+
+===========================<br/>
+
+배열에서 특정 값이 있는 인덱스를 찾는 finIndex 함수는 값이 존재하지 않는다면 -1을 반환합니다.<br/>
+
+배열에서 값을 찾는데 성공한다면 인덱스 값을 갖는 Some 인스턴스를 반환합니다.<br/>
+
+배열에서 값을 찾는데 실패한다면 None 인스턴스를 반환합니다.<br/>
+
+===========================<br/>
+
+실제로는 이렇게 사용할 수 있습니다.<br/>
+
+배열 내부에 1이라는 값이 있을 때에는 Some 태그와 value를 갖는 객체가 반환됩니다.<br/>
+
+배열 내부에 4라는 값이 없을 경우에는 None 태그를 갖는 객체가 반환됩니다.
+-->
+
 ---
 
 # fp-ts의 타입 추상화
@@ -299,6 +407,16 @@ fromNullable(undefined); // { _tag: 'None' }
 fromNullable(null);      // { _tag: 'None' }
 fromNullable(0);         // { _tag: 'Some', value: 0 }
 ```
+
+<!--
+fromNullable 함수를 이용해서 Option 타입을 생성할 수도 있습니다.<br/>
+
+===========================<br/>
+
+fromNullable 함수는 Nullable한 값이 인자로 전달되면 None이 반환됩니다.<br/>
+
+반대의 경우에는 해당 값을 갖는 Some 인스턴스를 반환합니다.<br/>
+-->
 
 ---
 
@@ -324,6 +442,22 @@ getOptionNumber('a')   // { _tag: 'None' }
 getOptionNumber('10'); // { _tag: 'Some', value: '10' }
 getOptionNumber(1);    // { _tag: 'Some', value: 1 }
 ```
+
+<!--
+또한 fromPredicate 라는 함수를 이용해서도 Option 인스턴스를 생성할 수 있습니다.<br/>
+
+fromPredicate 함수는 boolean을 반환하는 함수를 인자로 전달받습니다.<br/>
+
+===========================<br/>
+
+isNumber 함수를 fromPredicate 함수에 전달해 getOptionNumber 함수를 만들었습니다.<br/>
+
+===========================<br/>
+
+예시와 isNumber 함수가 true를 반환하는 경우에는 Some 인스턴스가 반환됩니다.<br/>
+
+isNumber 함수가 false를 반환하는 경우에는 None 인스턴스가 반환됩니다.<br/>
+-->
 
 ---
 
@@ -362,6 +496,20 @@ type Either<E, A> = Left<E> | Right<A>;
   </p>
 </div>
 
+<!--
+Either 타입은 Option 타입과 비슷하게 두 개의 타입 중 하나의 값을 표현합니다.<br/>
+
+Either의 인스턴스는 Left와 Right 인스턴스 입니다.<br/>
+
+Either 타입은 결측값을 처리하기 위해 Option 대신에 사용할 수 있습니다.<br/>
+
+Option의 None은 값을 포함할 수 있는 Left로 대체됩니다.<br/>
+
+일반적으로 Left은 실패를 표현하고 Right는 성공을 표현합니다.<br/>
+
+몇개의 예시들을 살펴보겠습니다.<br/>
+-->
+
 ---
 
 # fp-ts의 타입 추상화
@@ -376,7 +524,7 @@ type Right<A> = { _tag: 'Right', right: A };
 type Either<E, A> = Left<E> | Right<A>;
 ```
 
-```ts {1|3-8|10-11|13-14}
+```ts {1|3-8|10-14}
 import { Either, tryCatch } from 'fp-ts/lib/Either';
 
 function parse(s: string): Either<Error, unknown> {
@@ -392,6 +540,26 @@ const fail = '{"a": 1, "b"}';
 parse(success); // { _tag: 'Right', right: { a: 1, b: 2 } }
 parse(fail);    // { _tag: 'Left', left: 'Error: SyntaxError: Unexpected token...' }
 ```
+
+<!--
+Either는 예외를 발생시키는 경우에 자주 사용됩니다.<br/>
+
+이번 예시에서는 tryCatch 함수를 같이 사용해보겠습니다.<br/>
+
+===========================<br/>
+
+문자열을 JavaScript 객체로 바꾸어주는 parse 함수를 Either를 반환하도록 구현했습니다.<br/>
+
+tryCatch를 이용해 기존의 parse 함수가 예외를 발생시킬 경우 Error를 담는 Left를 반환합니다.<br/>
+
+parse 함수가 정상적으로 실행될 경우 JavaScript 객체를 담은 Right를 반환합니다.<br/>
+
+============================<br/>
+
+예시와 같이 성공적으로 변환되는 객체의 경우에는 Right 태그와 값을 갖는 right 속성을 가진 객체가 반환됩니다.<br/>
+
+예외가 발생하는 경우에는 Left 태그와 left 값을 갖는 객체가 반환됩니다.<br/>
+-->
 
 ---
 
@@ -416,6 +584,20 @@ getEitherString(null);    // { _tag: 'Left', left: 'defaultValue' }
 getEitherString(undefined); // { _tag: 'Left', left: 'defaultValue' }
 getEitherString('value'); // { _tag: 'Right', right: 'value' }
 ```
+
+<!--
+Either 타입에도 Option과 같이 fromNullable과 fromPredicate 함수를 사용할 수 있습니다.<br/>
+
+===========================<br/>
+
+다른 점은 Either 타입은 Left가 반환될 경우 사용될 값을 인자로 전달 받습니다.<br/>
+
+============================<br/>
+
+nullable한 값이 전달되는 경우 위의 함수에서 전달한 값을 갖는 Left 인스턴스가 반환되는 것을 볼 수 있습니다.<br/>
+
+반대의 경우에는 해당 값을 갖는 Right 인스턴스가 반환됩니다.<br/>
+-->
 
 ---
 
@@ -443,6 +625,20 @@ const getEitherString = fromPredicate(
 getEitherString('');    // { _tag: 'Left', left: 'defaultValue' }
 getEitherString('abc'); // { _tag: 'Right', right: 'abc' }
 ```
+
+<!--
+fromPredicate 함수도 fromNullable 함수와 동일합니다.<br/>
+
+===========================<br/>
+
+Left 인스턴스가 반환될 때 사용될 값을 반환하는 함수를 추가적으로 두번째 인자로 전달 받습니다.<br/>
+
+===========================<br/>
+
+Left 인스턴스가 반환될 경우 fromPredicate 함수에 두번째 인자로 전달된 함수가 실행되어 값이 담겨 반환되는 것을 확인할 수 있습니다.<br/>
+
+첫번째 인자로 전달된 함수가 true를 반환할 경우 해당 값을 담는 Right 인스턴스가 반환됩니다.<br/>
+-->
 
 ---
 
@@ -472,6 +668,12 @@ type TaskEither<E, A> = Task<Either<E, A>>;
   </p>
 </div>
 
+<!--
+Task 타입은 절대 실패하지 않는 비동기 계산을 표현합니다.<br/>
+
+실패할 수 있는 비동기 계산은 앞에서 보고온 Either를 사용한 TaskEither 타입을 사용할 수 있습니다.<br/>
+-->
+
 ---
 
 # fp-ts의 타입 추상화
@@ -490,7 +692,7 @@ type TaskEither<E, A> = Task<Either<E, A>>;
 
 <div class='relative'>
 
-```ts {1|3-15|17}  {maxHeight: 100}
+```ts {1|3-16|18} {maxHeight: 100}
 import { Task } from 'fp-ts/lib/Task';
 
 const read: Task<string> = () => {
@@ -499,6 +701,7 @@ const read: Task<string> = () => {
       input: process.input,
       output: process.stdout,
     });
+
     rl.question('Input: ', (answer) => {
       rl.close();
       console.log(answer);
@@ -513,6 +716,24 @@ read();
   <img v-click src='/images/task-example.png' class='slidev-vclick-target h-30 absolute bottom-10 right-10'>
 
 </div>
+
+<!--
+Skip
+
+===========================<br/>
+
+사용자에게 입력을 받는 비동기 작업을 실행하는 read 함수를 작성했습니다.<br/>
+
+read 함수는 프로그램이 동작하는 한 사용자의 입력을 계속 기다리며 실패하지 않습니다.<br/>
+
+===========================<br/>
+
+Skip
+
+===========================<br/>
+
+사진과 같이 read 함수가 잘 실행되는 것을 볼 수 있습니다.
+-->
 
 ---
 
@@ -559,6 +780,24 @@ run();
 
 </div>
 
+<!--
+TaskEither 타입도 Either와 동일하게 tryCatch 함수를 사용할 수 있습니다.<br/>
+
+===========================<br/>
+
+Promise가 resolve될 경우 resolve된 값을 갖는 Right 인스턴스를 반환합니다.<br/>
+
+reject될 경우 두번째 인자로 전달된 함수가 실행되어 반환된 값을 갖는 Left 인스턴스가 반환됩니다.<br/>
+
+===========================<br/>
+
+비동기 함수이기 때문에 async-await 키워드를 같이 이용해서 함수를 실행합니다.<br/>
+
+===========================<br/>
+
+앞서 설명한 것과 같이 각각 상황에 맞는 인스턴스들이 잘 반환된 것을 확인할 수 있습니다.<br/>
+-->
+
 ---
 
 # fp-ts의 유틸 함수
@@ -590,6 +829,10 @@ add3(add2(add1(1))); // 7
 ```
 
 </div>
+
+<!--
+===========================<br/>
+-->
 
 ---
 
@@ -630,6 +873,10 @@ add3(add3(add3(add3(add3(add2(add1(1)))))));
   </div>
 
 </div>
+
+<!--
+===========================<br/>
+-->
 
 ---
 
@@ -678,6 +925,10 @@ pipe(1, add1, add2, add3, add3, add3, add3, add3, add3);
 
 </div>
 
+<!--
+===========================<br/>
+-->
+
 ---
 
 # 타입 추상화를 사용하는 법
@@ -723,6 +974,10 @@ pipe(
   </div>
 
 </div>
+
+<!--
+===========================<br/>
+-->
 
 ---
 
@@ -770,6 +1025,10 @@ pipe(
 
 </div>
 
+<!--
+===========================<br/>
+-->
+
 ---
 
 # 타입 추상화를 사용하는 법
@@ -795,7 +1054,7 @@ const eiterhChain = <E, A, B>(f: (a: A) => Either<E, B>) => (
 
 <div class='relative'>
 
-```ts {0|1-2|4-6|8-12|14} {maxHeight: '100'}
+```ts {0|1-2|4-6|8-12|14} {maxHeight: 100}
 import { Either, chain, left, right } from 'fp-ts/lib/Either';
 import { pipe } from 'fp-ts/lib/function';
 
@@ -821,6 +1080,10 @@ func('Hello World!');
 
 </div>
 
+<!--
+===========================<br/>
+-->
+
 ---
 
 # 타입 추상화를 사용하는 법
@@ -846,7 +1109,7 @@ const eiterhChain = <E, A, B>(f: (a: A) => Either<E, B>) => (
 
 <div class='relative'>
 
-```ts {0|14} {maxHeight: '100'}
+```ts {0|14} {maxHeight: 100}
 import { Either, chain, left, right } from 'fp-ts/lib/Either';
 import { pipe } from 'fp-ts/lib/function';
 
@@ -872,6 +1135,10 @@ func(10);
 
 </div>
 
+<!--
+===========================<br/>
+-->
+
 ---
 
 # 타입 추상화를 사용하는 법
@@ -895,7 +1162,7 @@ declare const eitherMatch: <E, A, B>(onNone: (e: E) => B, onSome: (a: A) => B) =
 
 <div class='relative'>
 
-```ts {0|1-2|4-8} {maxHeight: '100'}
+```ts {0|1-2|4-8} {maxHeight: 100}
 import { fromPredicate, match } from 'fp-ts/lib/Option';
 import { pipe } from 'fp-ts/lib/function';
 
@@ -915,6 +1182,10 @@ pipe(
 
 </div>
 
+<!--
+===========================<br/>
+-->
+
 ---
 
 # 타입 추상화를 사용하는 법
@@ -938,7 +1209,7 @@ declare const eitherMatch: <E, A, B>(onNone: (e: E) => B, onSome: (a: A) => B) =
 
 <div class='relative'>
 
-```ts {0|4-8} {maxHeight: '100'}
+```ts {0|4-8} {maxHeight: 100}
 import { fromPredicate, match } from 'fp-ts/lib/Option';
 import { pipe } from 'fp-ts/lib/function';
 
@@ -957,6 +1228,10 @@ pipe(
   </div>
 
 </div>
+
+<!--
+===========================<br/>
+-->
 
 ---
 
