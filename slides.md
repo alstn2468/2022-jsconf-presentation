@@ -907,7 +907,7 @@ pipe(
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
     <img src='/images/option-match-some-example.png' class='h-16 mb-2 mx-auto' />
     <span class='text-sm block'>
-      <span class='bg-dark-400 font-mono font-bold'>Option</span> 의 <span class='bg-dark-400 font-mono font-bold'>Some</span> 타입일 경우 두 번째 인자로 전달된 함수가 실행된다.
+      <span class='bg-dark-400 font-mono font-bold'>Option</span> 의 <span class='bg-dark-400 font-mono font-bold'>Some</span> 타입일 경우 두 번째 인자로 전달된 함수가 실행됩니다.
     </span>
   </div>
 
@@ -950,7 +950,7 @@ pipe(
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
     <img src='/images/option-match-none-example.png' class='h-16 mb-2 mx-auto' />
     <span class='text-sm block'>
-      <span class='bg-dark-400 font-mono font-bold'>Option</span> 의 <span class='bg-dark-400 font-mono font-bold'>None</span> 타입일 경우 첫 번째 인자로 전달된 함수가 실행된다.
+      <span class='bg-dark-400 font-mono font-bold'>Option</span> 의 <span class='bg-dark-400 font-mono font-bold'>None</span> 타입일 경우 첫 번째 인자로 전달된 함수가 실행됩니다.
     </span>
   </div>
 
@@ -960,7 +960,7 @@ pipe(
 
 # 현실의 문제 해결 하기
 
-폼에 8개의 입력이 존재하는데, 이를 어떻게 우아하게 처리할 수 있을까?
+폼에 8개의 입력이 존재하는데, 이것을 어떻게 우아하게 처리할 수 있을까요?
 
 <img src="/images/part2-1.png" class="m-5 h-100 rounded shadow" />
 
@@ -1625,13 +1625,13 @@ layout: two-cols
 ## 좋았던 점
 
 <ul class="list-disc ml-6 text-lg">
-  <li>대수적 타입(ADT)를 사용하여 문제를 더 잘 정의하고 해결할 수 있었음</li>
-  <li>코드를 작성하며 함수형 사고를 하게 됨</li>
+  <li>대수적 타입(ADT)를 사용하여 문제를 더 잘 정의하고 해결할 수 있었습니다.</li>
+  <li>코드를 작성하며 함수형 사고를 할 수 있었습니다.</li>
   <ul class="list-disc ml-6 text-lg">
     <li>과연 이 함수에서 이 일을 하는 것이 옳을까?</li>
-    <li>사이드 이펙트 최소화 하기</li>
+    <li>사이드 이펙트 최소화 및 적절하게 사용</li>
   </ul>
-  <li>팀에서 새로운 기술이나 개념을 도입할 때 어떻게 해야할지 알게 됨</li>
+  <li>팀에서 새로운 기술이나 개념을 도입할 때 어떻게 해야할지 알게 되었습니다.</li>
 </ul>
 
 ::right::
@@ -1639,14 +1639,14 @@ layout: two-cols
 ## 아쉬웠던 점
 
 <ul class="list-disc ml-6 text-lg">
-  <li>fp-ts를 써보지 않았거나 혹은 함수형 프로그래밍 경험이 없다면, 코드 작성에 어려움을 겪을수도 있음</li>
-  <li>함수형 프로그래밍을 적용하지 않고 그냥 작성하는 코드가더 가독성이 좋고 짧은 경우도 있었음</li>
+  <li>fp-ts를 써보지 않았거나 혹은 함수형 프로그래밍 경험이 없다면, 코드 작성에 어려움을 겪을 수 있습니다.</li>
+  <li>함수형 프로그래밍을 적용하지 않고 그냥 작성하는 코드가더 가독성이 좋고 짧은 경우도 있었습니다.</li>
   <ul class="list-disc ml-6 text-lg">
     <li>예) Array 데이터를 사용하여 컴포넌트로 매핑하는 코드</li>
   </ul>
-  <li>최신 자료가 많지 않다</li>
+  <li>최신 자료가 많지 않습니다.</li>
   <ul class="list-disc ml-6 text-lg">
-    <li>fp-ts 메인테이너가 작성한 글이 있지만, 오래되어 outdated 된 내용이 많음</li>
+    <li>fp-ts 메인테이너가 작성한 글이 있지만, 오래되어 outdated 된 내용이 많았습니다.</li>
   </ul>
-  <li>fp-ts 문서가 친절한 편은 아니다.</li>
+  <li>fp-ts의 공식 문서가 친절한 편은 아닙니다.</li>
 </ul>
