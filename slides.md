@@ -172,7 +172,9 @@ fonts:
 
 ============================<br/>
 
-함수형 프로그래밍은 사이드 이펙트를 사용하지 않는 것이 아닌 순수 함수와 함께 관리하고 여기에서 생겨난 함수들을 조합해 프로그램을 만드는 패러다임 입니다.
+여러분들이 생각하시는 부분이 맞습니다.<br/>
+
+하지만 함수형 프로그래밍은 사이드 이펙트를 사용하지 않는 것이 아닌 순수 함수와 함께 관리하고 여기에서 생겨난 함수들을 조합해 프로그램을 만드는 패러다임 입니다.
 -->
 
 ---
@@ -191,9 +193,9 @@ fonts:
 </div>
 
 <!--
-팀에 함수형 프로그래밍은 어떻게 도입하게 되었을까요?<br/>
+그렇다면 팀에 함수형 프로그래밍은 어떻게 도입하게 되었을까요?<br/>
 
-제가 먼저 스터디를 진행하며 먼저 관련 이론들을 공부하고 있었습니다.
+우선 제가 개인적으로 스터디를 진행하며 관련 이론들을 공부하고 있었습니다.
 
 ===========================<br/>
 
@@ -221,7 +223,7 @@ fonts:
 </div>
 
 <!--
-팀 내부에서 스터디를 진행하던 중 뒤에서 설명하게될 사진과 같이 복잡한 상태를 관리해야하는 경우가 생겼었습니다.<br/>
+팀 내부에서 스터디를 진행하던 중 프로젝트에서 사진과 같이 복잡한 상태를 관리해야하는 경우가 생겼었습니다.<br/>
 
 ===========================<br/>
 
@@ -229,7 +231,9 @@ fonts:
 
 또한 검증 과정 중에는 공통으로 사용할 수 있는 것 또한 있었습니다.<br/>
 
-이런 문제를 어떻게 잘 해결할 수 있을까 고민하다 저희는 fp-ts를 이용한 함수형 프로그래밍을 도입하는 것으로 결정하게 되었습니다.
+이런 문제를 어떻게 잘 해결할 수 있을까 고민하다 저희는 fp-ts를 이용한 함수형 프로그래밍을 도입하는 것으로 결정하게 되었습니다.<br/>
+
+이 부분은 뒤쪽에서 사례와 적용 방법을 더 자세히 설명드리겠습니다.<br/>
 -->
 
 ---
@@ -279,13 +283,13 @@ fonts:
 </div>
 
 <!--
-많은 함수형 프로그래밍 라이브러리 중에서 fp-ts를 선택한 이유는 화면과 같습니다.<br/>
+많은 함수형 프로그래밍 라이브러리 중에서 fp-ts를 선택한 이유는 무엇일까요?<br/>
 
-많은 함수형 프로그래밍 언어에서 지원하는 타입 추상화를 제공합니다.<br/>
+fp-ts는 많은 함수형 프로그래밍 언어에서 지원하는 타입 추상화를 제공합니다.<br/>
 
 이 추상화들은 함수형 프로그래밍의 기반 이론을 따르고 있습니다.<br/>
 
-또한 라이브러리 메인테이너가 개발한 다른 같이 운용할 수 있는 라이브러리 생태계가 존재했습니다.<br/>
+또한 라이브러리와 같이 사용할 수 있는 다양한 라이브러리 생태계가 존재했습니다.<br/>
 
 이제 실제 사례를 살펴보기 전에 필요한 몇가지 타입 추상화와 유틸 함수들을 소개해보겠습니다.
 -->
@@ -331,7 +335,7 @@ A 타입 값이 존재한다면 Option 타입은 Some 인스턴스 입니다.<br
 
 Option 타입은 일반적으로 실패할 수 있는 계산의 효과를 나타냅니다.
 
-이제 몇가지 예시들을 살펴보겠습니다.
+이제 Option 타입을 사용하는 몇가지 예시들을 살펴보겠습니다.
 -->
 
 ---
@@ -367,7 +371,7 @@ findIndex(arr, (n) => n === 4); // { _tag: 'None' }
 <!--
 Option 타입은 첫번째 라인과 같이 가져올 수 있습니다.<br/>
 
-Some과 None을 이용해 Option 타입에 사용될 인스턴스들을 생성할 수 있습니다.<br/>
+some과 none을 이용해 각각의 타입 인스턴스들을 생성할 수 있습니다.<br/>
 
 ===========================<br/>
 
@@ -454,7 +458,7 @@ isNumber 함수를 fromPredicate 함수에 전달해 getOptionNumber 함수를 �
 
 ===========================<br/>
 
-예시와 isNumber 함수가 true를 반환하는 경우에는 Some 인스턴스가 반환됩니다.<br/>
+isNumber 함수가 true를 반환하는 경우에는 Some 인스턴스가 반환됩니다.<br/>
 
 isNumber 함수가 false를 반환하는 경우에는 None 인스턴스가 반환됩니다.<br/>
 -->
@@ -507,7 +511,7 @@ Option의 None은 값을 포함할 수 있는 Left로 대체됩니다.<br/>
 
 일반적으로 Left은 실패를 표현하고 Right는 성공을 표현합니다.<br/>
 
-몇개의 예시들을 살펴보겠습니다.<br/>
+Either 타입을 사용하는 몇개의 예시들을 살펴보겠습니다.<br/>
 -->
 
 ---
@@ -580,9 +584,9 @@ import { fromNullable } from 'fp-ts/lib/Either';
 
 const getEitherString = fromNullable('defaultValue');
 
-getEitherString(null);    // { _tag: 'Left', left: 'defaultValue' }
+getEitherString(null);      // { _tag: 'Left', left: 'defaultValue' }
 getEitherString(undefined); // { _tag: 'Left', left: 'defaultValue' }
-getEitherString('value'); // { _tag: 'Right', right: 'value' }
+getEitherString('value');   // { _tag: 'Right', right: 'value' }
 ```
 
 <!--
@@ -671,7 +675,7 @@ type TaskEither<E, A> = Task<Either<E, A>>;
 <!--
 Task 타입은 절대 실패하지 않는 비동기 계산을 표현합니다.<br/>
 
-실패할 수 있는 비동기 계산은 앞에서 보고온 Either를 사용한 TaskEither 타입을 사용할 수 있습니다.<br/>
+실패할 수 있는 비동기 계산은 앞에서 설명한 Either를 같이 사용한 TaskEither 타입을 사용할 수 있습니다.<br/>
 -->
 
 ---
@@ -753,7 +757,7 @@ type TaskEither<E, A> = Task<Either<E, A>>;
 
 <div class='relative'>
 
-```ts {1|3-10|12-18|20}  {maxHeight: 100}
+```ts {1|3-10|12-20}  {maxHeight: 100}
 import { TaskEither, tryCatch } from 'fp-ts/lib/TaskEither';
 
 function taskEitherTest(isResolve: boolean): TaskEither<string, string> {
@@ -831,7 +835,19 @@ add3(add2(add1(1))); // 7
 </div>
 
 <!--
+이제 fp-ts의 몇가지 유틸함수인 pipe 함수를 소개하겠습니다.<br/>
+
+예시와 같이 두 숫자를 더하는 커링된 add 함수가 있습니다.<br/>
+
 ===========================<br/>
+
+add 함수를 이용해 1, 2, 3을 더하는 함수들을 만들었습니다.<br/>
+
+위의 그림처럴 각각의 함수들을 순차적으로 실행시킬 경우에는 어떤식으로 함수를 호출할 수 있을까요?<br/>
+
+===========================<br/>
+
+이렇게 함수 호출 안에서 함수를 호출하는 방식으로 함수들을 조합할 수 있을겁니다.<br/>
 -->
 
 ---
@@ -875,7 +891,17 @@ add3(add3(add3(add3(add3(add2(add1(1)))))));
 </div>
 
 <!--
+하지만 합성하는 함수의 개수가 점점 많아지게 되면 어떻게 될까요?<br/>
+
 ===========================<br/>
+
+코드가 굉장히 복잡해지는 것을 확인할 수 있습니다.<br/>
+
+===========================<br/>
+
+조금 더 편하게 보기 위해서 함수 호출을 할 때마다 개행을 한다면?<br/>
+
+아마 콜백 헬과 같은 상황이 떠오르실 겁니다.<br/>
 -->
 
 ---
@@ -926,7 +952,15 @@ pipe(1, add1, add2, add3, add3, add3, add3, add3, add3);
 </div>
 
 <!--
+pipe 함수를 사용하면 예시와 같이 함수를 합성할 수 있습니다.<br/>
+
+한눈에 보기에도 함수가 합성되는 흐름을 따라가기에 훨씬 수월합니다.<br/>
+
+그저 pipe 함수에 전달된 인자를 왼쪽에서 오른쪽으로 읽기만 하면 됩니다.<br/>
+
 ===========================<br/>
+
+소개시켜드린 유틸 함수인 pipe는 현제 자바스크립트 연산자로 제안되어 있습니다.<br/>
 -->
 
 ---
@@ -959,10 +993,11 @@ declare const taskEitherMap: <A, B>(f: (a: A) => B) => <E>(fa: TaskEither<E, A>)
 import { fromNullable, map } from 'fp-ts/lib/Option';
 
 pipe(
-  'something value',            // string
-  fromNullable,                 // Option<string>
-  map((value) => value.length), // Option<number>
-  map((value) => value + 1),    // Option<string>
+  'something value',                // string
+  fromNullable,                     // Option<string>
+  map((value) => value.length),     // Option<number>
+  map((value) => value + 1),        // Option<number>
+  map((value) => value.toString()), // Option<string>
 );
 ```
 
@@ -976,7 +1011,23 @@ pipe(
 </div>
 
 <!--
+앞에서 설명해드린 타입 추상화들을 어떻게 사용할 수 있을까요?<br/>
+
+타입 추상화를 사용하기 위해서는 몇가지 함수들을 알아야 합니다.<br/>
+
+첫번째로는 map 함수입니다.<br/>
+
+JavaScript의 배열에 있는 map 함수와 동일한 기능을 하며 사상 함수라고도 합니다.<br/>
+
+타입 추상화들의 map 함수는 공통적으로 A 타입의 값을 B 타입으로 바꾸는 함수를 전달받습니다.<br/>
+
 ===========================<br/>
+
+자료의 코드처럼 Some 타입의 경우에는 map 함수에 전달된 함수가 실행됩니다.<br/>
+
+pipe를 따라가보면 string 타입이 fromNullable 함수를 만나 Option<string>이 되었고<br/>
+
+map 함수에 전달된 함수의 시그니처에 따라 타입이 변하는 것을 확인할 수 있습니다.<br/>
 -->
 
 ---
@@ -1026,7 +1077,13 @@ pipe(
 </div>
 
 <!--
+반대로 None 인스턴스가 전달된다면 map 함수에 전달된 함수는 실행되지 않습니다.<br/>
+
 ===========================<br/>
+
+fromPredicate에 전달된 함수가 false를 반환했기 때문에 None 인스턴스가 전달됩니다.<br/>
+
+따라서 해당 코드의 결과는 None 인스턴스가 되었습니다.
 -->
 
 ---
@@ -1054,7 +1111,7 @@ const eiterhChain = <E, A, B>(f: (a: A) => Either<E, B>) => (
 
 <div class='relative'>
 
-```ts {0|1-2|4-6|8-12|14} {maxHeight: 100}
+```ts {0|1-6|8-14} {maxHeight: 100}
 import { Either, chain, left, right } from 'fp-ts/lib/Either';
 import { pipe } from 'fp-ts/lib/function';
 
@@ -1081,7 +1138,27 @@ func('Hello World!');
 </div>
 
 <!--
+chain 함수는 다음 계산을 이어할지 말지 결정하기 위해 사용됩니다.<br/>
+
+앞에 실행된 계산의 결과를 이용해 이후 계산을 순서대로 진행합니다.<br/>
+
+Either 타입의 chain을 예시로 설명해드리겠습니다.<br/>
+
 ===========================<br/>
+
+multiplyByTen 함수는 입력값이 숫자이면 10을 곱하고 Right 인스턴스를 반환합니다.<br/>
+
+입력값이 숫자가 아니라면 문자열을 담은 Left 인스턴스를 반환합니다.<br/>
+
+increment는 숫자를 받아 1을 더한 값을 담은 Right 인스턴스를 반환하는 함수입니다.<br/>
+
+===========================<br/>
+
+이 함수들을 합성해 새로운 함수인 func 함수를 만들었습니다.<br/>
+
+func 함수를 호출할 때 전달된 값이 문자열이기 때문에 multiplyByTen 함수는 Left 인스턴스를 반환합니다.<br/>
+
+따라서 chain에 전달된 increment 함수는 실행되지 않고 Left 인스턴스가 최종적으로 반환됩니다.<br/>
 -->
 
 ---
@@ -1109,7 +1186,7 @@ const eiterhChain = <E, A, B>(f: (a: A) => Either<E, B>) => (
 
 <div class='relative'>
 
-```ts {0|14} {maxHeight: 100}
+```ts {14} {maxHeight: 100}
 import { Either, chain, left, right } from 'fp-ts/lib/Either';
 import { pipe } from 'fp-ts/lib/function';
 
@@ -1136,7 +1213,10 @@ func(10);
 </div>
 
 <!--
-===========================<br/>
+반대로 전달된 값이 숫자인 10일 경우 multiplyByTen 함수는 숫자 100을 담은 Right 인스턴스가 반환될 것입니다.<br/>
+
+Right 인스턴스가 chain 함수로 전달되어 chain에 전달되었던 increment 함수가
+호출되어 1이 더해진 Right 인스턴스가 반환되는 것을 확인할 수 있습니다.<br/>
 -->
 
 ---
@@ -1162,7 +1242,7 @@ declare const eitherMatch: <E, A, B>(onNone: (e: E) => B, onSome: (a: A) => B) =
 
 <div class='relative'>
 
-```ts {0|1-2|4-8} {maxHeight: 100}
+```ts {0|1-8} {maxHeight: 100}
 import { fromPredicate, match } from 'fp-ts/lib/Option';
 import { pipe } from 'fp-ts/lib/function';
 
@@ -1183,7 +1263,16 @@ pipe(
 </div>
 
 <!--
+마지막으로 match와 fold 함수에 대해서 설명해 드리겠습니다.<br/>
+
+match와 fold 함수는 동일한 기능을 하면 Option 타입일 경우 Some과 None,
+Either 타입의 경우 Left와 Right의 각각 경우에 따라 실행할 함수를 전달받아 실행합니다.<br/>
+
 ===========================<br/>
+
+pipe의 첫번째로 전달된 값이 0이 아닐 경우에 fromPredicate 함수는 Some 인스턴스를 반환합니다.<br/>
+
+Some 인스턴스가 match 함수에 전달될 경우 두번째 인자로 전달된 함수가 실행됩니다.
 -->
 
 ---
@@ -1209,7 +1298,7 @@ declare const eitherMatch: <E, A, B>(onNone: (e: E) => B, onSome: (a: A) => B) =
 
 <div class='relative'>
 
-```ts {0|4-8} {maxHeight: 100}
+```ts {4-8} {maxHeight: 100}
 import { fromPredicate, match } from 'fp-ts/lib/Option';
 import { pipe } from 'fp-ts/lib/function';
 
@@ -1230,7 +1319,13 @@ pipe(
 </div>
 
 <!--
-===========================<br/>
+pipe의 첫번째로 전달된 값이 0일 경우에 fromPredicate 함수는 None 인스턴스를 반환합니다.<br/>
+
+None 인스턴스가 match 함수에 전달될 경우 첫번째 인자로 전달된 함수가 실행됩니다.<br/>
+
+지금까지 몇개의 타입 추상화와 함수, pipe 함수들을 살펴보았습니다.<br/>
+
+이제 이 이론들을 사용해 현실의 문제를 해결한 사례를 소개해드리겠습니다.<br/>
 -->
 
 ---
