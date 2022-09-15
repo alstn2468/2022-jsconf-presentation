@@ -4,7 +4,7 @@ highlighter: shiki
 favicon: '/images/favicon.ico'
 title: 프론트엔드에서 함수형을 추구하면 안되는 걸까?
 info: '함수형 프로그래밍에 대한 이론과 프론트엔드 개발을 하면서 함수형 프로그래밍을 적용한 사례를 소개합니다.'
-colorSchema: 'dark'
+colorSchema: 'light'
 fonts:
   mono: 'Noto Sans Mono'
 ---
@@ -299,7 +299,7 @@ fp-ts는 많은 함수형 프로그래밍 언어에서 지원하는 타입 추�
 # fp-ts의 타입 추상화
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>Option&lt;A></span>
+  <span class='bg-light-600'>Option&lt;A></span>
 </h2>
 
 ```ts
@@ -310,17 +310,17 @@ type Option<A> = None | Some<A>;
 
 <div>
   <p class='mt-2 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>Option&ltA></span>는 선택적인 값 <span class='bg-dark-400 font-mono font-bold'>A</span>를 위한 컨테이너 입니다.
+    <span class='bg-light-600 font-mono font-bold'>Option&ltA></span>는 선택적인 값 <span class='bg-light-600 font-mono font-bold'>A</span>를 위한 컨테이너 입니다.
   </p>
   <p class='mt-0 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>A</span> 타입의 값이 존재한다면 <span class='bg-dark-400 font-mono font-bold'>Option&ltA></span>는 <span class='bg-dark-400 font-mono font-bold'>Some&ltA></span> 인스턴스입니다.<br/>
+    <span class='bg-light-600 font-mono font-bold'>A</span> 타입의 값이 존재한다면 <span class='bg-light-600 font-mono font-bold'>Option&ltA></span>는 <span class='bg-light-600 font-mono font-bold'>Some&ltA></span> 인스턴스입니다.<br/>
   </p>
   <p class='mt-0 mb-2 text-normal'>
-    값이 존재하지 않는다면 <span class='bg-dark-400 font-mono font-bold'>Option&ltA></span>는 <span class='bg-dark-400 font-mono font-bold'>None</span> 인스턴스입니다.
+    값이 존재하지 않는다면 <span class='bg-light-600 font-mono font-bold'>Option&ltA></span>는 <span class='bg-light-600 font-mono font-bold'>None</span> 인스턴스입니다.
   </p>
 
   <p class='mt-8 text-xl'>
-    <span class='bg-dark-400 font-mono font-bold'>Option&ltA></span>는 <strong>실패할 수 있는 계산</strong>의 효과를 나타냅니다.
+    <span class='bg-light-600 font-mono font-bold'>Option&ltA></span>는 <strong>실패할 수 있는 계산</strong>의 효과를 나타냅니다.
   </p>
 </div>
 
@@ -343,7 +343,7 @@ Option 타입은 일반적으로 실패할 수 있는 계산의 효과를 나타
 # fp-ts의 타입 추상화
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>Option&lt;A></span>
+  <span class='bg-light-600'>Option&lt;A></span>
 </h2>
 
 ```ts
@@ -395,7 +395,7 @@ some과 none을 이용해 각각의 타입 인스턴스들을 생성할 수 있�
 # fp-ts의 타입 추상화
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>Option&lt;A></span>
+  <span class='bg-light-600'>Option&lt;A></span>
 </h2>
 
 ```ts
@@ -427,7 +427,7 @@ fromNullable 함수는 Nullable한 값이 인자로 전달되면 None이 반환�
 # fp-ts의 타입 추상화
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>Option&lt;A></span>
+  <span class='bg-light-600'>Option&lt;A></span>
 </h2>
 
 ```ts
@@ -468,7 +468,7 @@ isNumber 함수가 false를 반환하는 경우에는 None 인스턴스가 반�
 # fp-ts의 타입 추상화
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>Either&lt;E,A></span>
+  <span class='bg-light-600'>Either&lt;E,A></span>
 </h2>
 
 ```ts
@@ -479,24 +479,24 @@ type Either<E, A> = Left<E> | Right<A>;
 
 <div>
   <p class='mt-2 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>Either&ltE,A></span>는 두 개의 타입 중 하나의 값을 표현합니다.
+    <span class='bg-light-600 font-mono font-bold'>Either&ltE,A></span>는 두 개의 타입 중 하나의 값을 표현합니다.
     <span class='text-xs inline-block relative'>
       (분리 합집합, Disjoint Union)
       <img src='/images/disjoint-union.png' class='h-24 absolute -top-26 left-1/2 transform -translate-x-1/2 bg-light-50 rounded-md'>
     </span>
   </p>
   <p class='mt-0 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>Either</span>의 인스턴스는 <span class='bg-dark-400 font-mono font-bold'>Left</span> 또는 <span class='bg-dark-400 font-mono font-bold'>Right</span> 인스턴스 입니다.
+    <span class='bg-light-600 font-mono font-bold'>Either</span>의 인스턴스는 <span class='bg-light-600 font-mono font-bold'>Left</span> 또는 <span class='bg-light-600 font-mono font-bold'>Right</span> 인스턴스 입니다.
   </p>
   <p class='mt-0 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>Either</span>는 결측값을 처리하기 위해 <span class='bg-dark-400 font-mono font-bold'>Option</span> 대신에 사용할 수 있습니다.
+    <span class='bg-light-600 font-mono font-bold'>Either</span>는 결측값을 처리하기 위해 <span class='bg-light-600 font-mono font-bold'>Option</span> 대신에 사용할 수 있습니다.
   </p>
   <p class='mt-0 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>Option</span>의 <span class='bg-dark-400 font-mono font-bold'>None</span>은 정보를 포함할 수 있는 <span class='bg-dark-400 font-mono font-bold'>Left</span>로 대체 됩니다.
+    <span class='bg-light-600 font-mono font-bold'>Option</span>의 <span class='bg-light-600 font-mono font-bold'>None</span>은 정보를 포함할 수 있는 <span class='bg-light-600 font-mono font-bold'>Left</span>로 대체 됩니다.
   </p>
 
   <p class='mt-8 text-xl'>
-    일반적으로 <span class='bg-dark-400 font-mono font-bold'>Left</span>는 <strong>실패</strong>를 표현하고 <span class='bg-dark-400 font-mono font-bold'>Right</span>는 <strong>성공</strong>을 표현합니다.
+    일반적으로 <span class='bg-light-600 font-mono font-bold'>Left</span>는 <strong>실패</strong>를 표현하고 <span class='bg-light-600 font-mono font-bold'>Right</span>는 <strong>성공</strong>을 표현합니다.
   </p>
 </div>
 
@@ -519,7 +519,7 @@ Either 타입을 사용하는 몇개의 예시들을 살펴보겠습니다.<br/>
 # fp-ts의 타입 추상화
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>Either&lt;E,A></span>
+  <span class='bg-light-600'>Either&lt;E,A></span>
 </h2>
 
 ```ts
@@ -570,7 +570,7 @@ parse 함수가 정상적으로 실행될 경우 JavaScript 객체를 담은 Rig
 # fp-ts의 타입 추상화
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>Either&lt;E,A></span>
+  <span class='bg-light-600'>Either&lt;E,A></span>
 </h2>
 
 ```ts
@@ -608,7 +608,7 @@ nullable한 값이 전달되는 경우 위의 함수에서 전달한 값을 갖�
 # fp-ts의 타입 추상화
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>Either&lt;E,A></span>
+  <span class='bg-light-600'>Either&lt;E,A></span>
 </h2>
 
 ```ts
@@ -649,7 +649,7 @@ Left 인스턴스가 반환될 경우 fromPredicate 함수에 두번째 인자�
 # fp-ts의 타입 추상화
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>Task&lt;A></span> <span class='bg-dark-400'>TaskEither&ltE,A></span>
+  <span class='bg-light-600'>Task&lt;A></span> <span class='bg-light-600'>TaskEither&ltE,A></span>
 </h2>
 
 ```ts
@@ -662,13 +662,13 @@ type TaskEither<E, A> = Task<Either<E, A>>;
 
 <div>
   <p class='mt-2 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>Task&ltA></span>는 <span class='bg-dark-400 font-mono font-bold'>A</span> 타입의 값을 반환하는 비동기 계산을 표현합니다.
+    <span class='bg-light-600 font-mono font-bold'>Task&ltA></span>는 <span class='bg-light-600 font-mono font-bold'>A</span> 타입의 값을 반환하는 비동기 계산을 표현합니다.
   </p>
   <p class='mt-2 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>Task&ltA></span>는 <strong>절대 실패하지</strong> 않는 비동기 계산에 사용됩니다.
+    <span class='bg-light-600 font-mono font-bold'>Task&ltA></span>는 <strong>절대 실패하지</strong> 않는 비동기 계산에 사용됩니다.
   </p>
   <p class='mt-2 mb-2 text-normal'>
-    실패할 수 있는 비동기 계산은 <span class='bg-dark-400 font-mono font-bold'>TaskEither&ltE,A></span>를 사용할 수 있습니다.
+    실패할 수 있는 비동기 계산은 <span class='bg-light-600 font-mono font-bold'>TaskEither&ltE,A></span>를 사용할 수 있습니다.
   </p>
 </div>
 
@@ -683,7 +683,7 @@ Task 타입은 절대 실패하지 않는 비동기 계산을 표현합니다.<b
 # fp-ts의 타입 추상화
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>Task&lt;A></span> <span class='bg-dark-400'>TaskEither&ltE,A></span>
+  <span class='bg-light-600'>Task&lt;A></span> <span class='bg-light-600'>TaskEither&ltE,A></span>
 </h2>
 
 ```ts
@@ -744,7 +744,7 @@ Skip
 # fp-ts의 타입 추상화
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>Task&lt;A></span> <span class='bg-dark-400'>TaskEither&ltE,A></span>
+  <span class='bg-light-600'>Task&lt;A></span> <span class='bg-light-600'>TaskEither&ltE,A></span>
 </h2>
 
 ```ts
@@ -807,7 +807,7 @@ reject될 경우 두번째 인자로 전달된 함수가 실행되어 반환된 
 # fp-ts의 유틸 함수
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>pipe</span>
+  <span class='bg-light-600'>pipe</span>
 </h2>
 
 ```mermaid {scale: 1.6}
@@ -818,7 +818,7 @@ flowchart LR
 <div>
 
   <p class='text-base'>
-    <span class='bg-dark-400 font-mono font-bold'>pipe</span>를 사용하지 않고 함수를 합성하는 경우
+    <span class='bg-light-600 font-mono font-bold'>pipe</span>를 사용하지 않고 함수를 합성하는 경우
   </p>
 
 
@@ -855,7 +855,7 @@ add 함수를 이용해 1, 2, 3을 더하는 함수들을 만들었습니다.<br
 # fp-ts의 유틸 함수
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>pipe</span>
+  <span class='bg-light-600'>pipe</span>
 </h2>
 
 ```mermaid {scale: 1.6}
@@ -866,7 +866,7 @@ flowchart LR
 <div>
 
   <p class='text-base'>
-    <span class='bg-dark-400 font-mono font-bold'>pipe</span>를 사용하지 않았을 때 합성되는 함수의 수가 점점 많아진다면 어떻게 될까요??
+    <span class='bg-light-600 font-mono font-bold'>pipe</span>를 사용하지 않았을 때 합성되는 함수의 수가 점점 많아진다면 어떻게 될까요??
   </p>
 
   <div v-click='1' class='slidev-vclick-target relative'>
@@ -909,7 +909,7 @@ add3(add3(add3(add3(add3(add2(add1(1)))))));
 # fp-ts의 유틸 함수
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>pipe</span>
+  <span class='bg-light-600'>pipe</span>
 </h2>
 
 ```mermaid {scale: 1.6}
@@ -920,7 +920,7 @@ flowchart LR
 <div class='relative'>
 
   <p class='text-base'>
-    <span class='bg-dark-400 font-mono font-bold'>pipe</span>를 사용해 함수를 합성하는 경우
+    <span class='bg-light-600 font-mono font-bold'>pipe</span>를 사용해 함수를 합성하는 경우
   </p>
 
 
@@ -968,7 +968,7 @@ pipe 함수를 사용하면 예시와 같이 함수를 합성할 수 있습니�
 # 타입 추상화를 사용하는 법
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>map</span>
+  <span class='bg-light-600'>map</span>
 </h2>
 
 ```ts
@@ -980,10 +980,10 @@ declare const taskEitherMap: <A, B>(f: (a: A) => B) => <E>(fa: TaskEither<E, A>)
 
 <div>
   <p class='mt-2 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>map</span>함수는 사상 함수라고 하며 <span class='bg-dark-400 font-mono font-bold'>A</span> 타입의 값을 <span class='bg-dark-400 font-mono font-bold'>B</span> 타입의 값으로 바꿀 때 사용할 수 있습니다.
+    <span class='bg-light-600 font-mono font-bold'>map</span>함수는 사상 함수라고 하며 <span class='bg-light-600 font-mono font-bold'>A</span> 타입의 값을 <span class='bg-light-600 font-mono font-bold'>B</span> 타입의 값으로 바꿀 때 사용할 수 있습니다.
   </p>
   <p class='mt-2 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>map</span>함수는 공통적으로 <span class='bg-dark-400 font-mono font-bold'>(f: (a: A) => B)</span> 시그니처를 갖는 함수를 전달받습니다.
+    <span class='bg-light-600 font-mono font-bold'>map</span>함수는 공통적으로 <span class='bg-light-600 font-mono font-bold'>(f: (a: A) => B)</span> 시그니처를 갖는 함수를 전달받습니다.
   </p>
 </div>
 
@@ -1004,7 +1004,7 @@ pipe(
   <div v-click class='slidev-vclick-target absolute bottom-4 right-8 text-center'>
     <img src='/images/option-map-some-example.png' class='h-6 mb-2 mx-auto' />
     <span class='text-sm block'>
-      <span class='bg-dark-400 font-mono font-bold'>Some</span> 타입일 경우 <span class='bg-dark-400 font-mono font-bold'>map</span> 함수에 전달된 함수가 실행됩니다.
+      <span class='bg-light-600 font-mono font-bold'>Some</span> 타입일 경우 <span class='bg-light-600 font-mono font-bold'>map</span> 함수에 전달된 함수가 실행됩니다.
     </span>
   </div>
 
@@ -1035,7 +1035,7 @@ map 함수에 전달된 함수의 시그니처에 따라 타입이 변하는 것
 # 타입 추상화를 사용하는 법
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>map</span>
+  <span class='bg-light-600'>map</span>
 </h2>
 
 ```ts
@@ -1047,10 +1047,10 @@ declare const taskEitherMap: <A, B>(f: (a: A) => B) => <E>(fa: TaskEither<E, A>)
 
 <div>
   <p class='mt-2 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>map</span>함수는 사상 함수라고 하며 <span class='bg-dark-400 font-mono font-bold'>A</span> 타입의 값을 <span class='bg-dark-400 font-mono font-bold'>B</span> 타입의 값으로 바꿀 때 사용할 수 있습니다.
+    <span class='bg-light-600 font-mono font-bold'>map</span>함수는 사상 함수라고 하며 <span class='bg-light-600 font-mono font-bold'>A</span> 타입의 값을 <span class='bg-light-600 font-mono font-bold'>B</span> 타입의 값으로 바꿀 때 사용할 수 있습니다.
   </p>
   <p class='mt-2 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>map</span>함수는 공통적으로 <span class='bg-dark-400 font-mono font-bold'>(f: (a: A) => B)</span> 시그니처를 갖는 함수를 전달받습니다.
+    <span class='bg-light-600 font-mono font-bold'>map</span>함수는 공통적으로 <span class='bg-light-600 font-mono font-bold'>(f: (a: A) => B)</span> 시그니처를 갖는 함수를 전달받습니다.
   </p>
 </div>
 
@@ -1070,7 +1070,7 @@ pipe(
   <div v-click class='slidev-vclick-target absolute bottom-4 right-8 text-center'>
     <img src='/images/option-map-none-example.png' class='h-6 mb-2 mx-auto' />
     <span class='text-sm block'>
-      <span class='bg-dark-400 font-mono font-bold'>None</span> 타입일 경우 <span class='bg-dark-400 font-mono font-bold'>map</span> 함수에 전달된 함수가 실행되지 않습니다.
+      <span class='bg-light-600 font-mono font-bold'>None</span> 타입일 경우 <span class='bg-light-600 font-mono font-bold'>map</span> 함수에 전달된 함수가 실행되지 않습니다.
     </span>
   </div>
 
@@ -1091,7 +1091,7 @@ fromPredicate에 전달된 함수가 false를 반환했기 때문에 None 인스
 # 타입 추상화를 사용하는 법
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>chain</span>
+  <span class='bg-light-600'>chain</span>
 </h2>
 
 ```ts
@@ -1102,7 +1102,7 @@ const eiterhChain = <E, A, B>(f: (a: A) => Either<E, B>) => (
 
 <div>
   <p class='mt-2 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>chain</span>함수는 다음 계산을 할지말지 결정하기 위해 사용되며
+    <span class='bg-light-600 font-mono font-bold'>chain</span>함수는 다음 계산을 할지말지 결정하기 위해 사용되며
   </p>
   <p class='mt-2 mb-2 text-normal'>
     앞 계산의 반환 값을 이용해 순서대로 계산을 진행합니다.
@@ -1131,7 +1131,7 @@ func('Hello World!');
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
     <img src='/images/either-chain-left-example.png' class='h-16 mb-2 mx-auto' />
     <span class='text-sm block'>
-      <span class='bg-dark-400 font-mono font-bold'>Left</span> 타입일 경우 <span class='bg-dark-400 font-mono font-bold'>chain</span> 함수에 전달된 함수가 실행되지 않습니다.
+      <span class='bg-light-600 font-mono font-bold'>Left</span> 타입일 경우 <span class='bg-light-600 font-mono font-bold'>chain</span> 함수에 전달된 함수가 실행되지 않습니다.
     </span>
   </div>
 
@@ -1166,7 +1166,7 @@ func 함수를 호출할 때 전달된 값이 문자열이기 때문에 multiply
 # 타입 추상화를 사용하는 법
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>chain</span>
+  <span class='bg-light-600'>chain</span>
 </h2>
 
 ```ts
@@ -1177,7 +1177,7 @@ const eiterhChain = <E, A, B>(f: (a: A) => Either<E, B>) => (
 
 <div>
   <p class='mt-2 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>chain</span>함수는 다음 계산을 할지말지 결정하기 위해 사용되며
+    <span class='bg-light-600 font-mono font-bold'>chain</span>함수는 다음 계산을 할지말지 결정하기 위해 사용되며
   </p>
   <p class='mt-2 mb-2 text-normal'>
     앞 계산의 반환 값을 이용해 순서대로 계산을 진행합니다.
@@ -1206,7 +1206,7 @@ func(10);
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
     <img src='/images/either-chain-right-example.png' class='h-16 mb-2 mx-auto' />
     <span class='text-sm block'>
-      <span class='bg-dark-400 font-mono font-bold'>Right</span> 타입일 경우 <span class='bg-dark-400 font-mono font-bold'>chain</span> 함수에 전달된 함수가 실행 됩니다.
+      <span class='bg-light-600 font-mono font-bold'>Right</span> 타입일 경우 <span class='bg-light-600 font-mono font-bold'>chain</span> 함수에 전달된 함수가 실행 됩니다.
     </span>
   </div>
 
@@ -1224,7 +1224,7 @@ Right 인스턴스가 chain 함수로 전달되어 chain에 전달되었던 incr
 # 타입 추상화를 사용하는 법
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>match</span> <span class='bg-dark-400'>fold</span>
+  <span class='bg-light-600'>match</span> <span class='bg-light-600'>fold</span>
 </h2>
 
 ```ts
@@ -1236,7 +1236,7 @@ declare const eitherMatch: <E, A, B>(onNone: (e: E) => B, onSome: (a: A) => B) =
 
 <div>
   <p class='mt-2 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>match</span>와 <span class='bg-dark-400 font-mono font-bold'>fold</span> 함수는 동일한 기능을 수행하며 가능한 케이스에 따라 실행할 함수를 받아 실행합니다.
+    <span class='bg-light-600 font-mono font-bold'>match</span>와 <span class='bg-light-600 font-mono font-bold'>fold</span> 함수는 동일한 기능을 수행하며 가능한 케이스에 따라 실행할 함수를 받아 실행합니다.
   </p>
 </div>
 
@@ -1256,7 +1256,7 @@ pipe(
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
     <img src='/images/option-match-some-example.png' class='h-16 mb-2 mx-auto' />
     <span class='text-sm block'>
-      <span class='bg-dark-400 font-mono font-bold'>Option</span> 의 <span class='bg-dark-400 font-mono font-bold'>Some</span> 타입일 경우 두 번째 인자로 전달된 함수가 실행됩니다.
+      <span class='bg-light-600 font-mono font-bold'>Option</span> 의 <span class='bg-light-600 font-mono font-bold'>Some</span> 타입일 경우 두 번째 인자로 전달된 함수가 실행됩니다.
     </span>
   </div>
 
@@ -1280,7 +1280,7 @@ Some 인스턴스가 match 함수에 전달될 경우 두번째 인자로 전달
 # 타입 추상화를 사용하는 법
 
 <h2 class='mb-2 mt-8 inline-block font-mono'>
-  <span class='bg-dark-400'>match</span> <span class='bg-dark-400'>fold</span>
+  <span class='bg-light-600'>match</span> <span class='bg-light-600'>fold</span>
 </h2>
 
 ```ts
@@ -1292,7 +1292,7 @@ declare const eitherMatch: <E, A, B>(onNone: (e: E) => B, onSome: (a: A) => B) =
 
 <div>
   <p class='mt-2 mb-2 text-normal'>
-    <span class='bg-dark-400 font-mono font-bold'>match</span>와 <span class='bg-dark-400 font-mono font-bold'>fold</span> 함수는 동일한 기능을 수행하며 가능한 케이스에 따라 실행할 함수를 받아 실행합니다.
+    <span class='bg-light-600 font-mono font-bold'>match</span>와 <span class='bg-light-600 font-mono font-bold'>fold</span> 함수는 동일한 기능을 수행하며 가능한 케이스에 따라 실행할 함수를 받아 실행합니다.
   </p>
 </div>
 
@@ -1312,7 +1312,7 @@ pipe(
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
     <img src='/images/option-match-none-example.png' class='h-16 mb-2 mx-auto' />
     <span class='text-sm block'>
-      <span class='bg-dark-400 font-mono font-bold'>Option</span> 의 <span class='bg-dark-400 font-mono font-bold'>None</span> 타입일 경우 첫 번째 인자로 전달된 함수가 실행됩니다.
+      <span class='bg-light-600 font-mono font-bold'>Option</span> 의 <span class='bg-light-600 font-mono font-bold'>None</span> 타입일 경우 첫 번째 인자로 전달된 함수가 실행됩니다.
     </span>
   </div>
 
