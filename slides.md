@@ -264,19 +264,19 @@ fonts:
 </div>
 
 <div class='flex flex-col absolute bottom-6 right-10 text-xs'>
-  <a class='text-gray-400 underline mb-1' href='https://github.com/gcanti/fp-ts' target='_blank'>
+  <a class='text-gray-600 underline mb-1' href='https://github.com/gcanti/fp-ts' target='_blank'>
     https://github.com/gcanti/fp-ts
   </a>
-  <a class='text-gray-400 underline mb-1' href='https://github.com/gcanti/io-ts' target='_blank'>
+  <a class='text-gray-600 underline mb-1' href='https://github.com/gcanti/io-ts' target='_blank'>
     https://github.com/gcanti/io-ts
   </a>
-  <a class='text-gray-400 underline mb-1' href='https://github.com/gcanti/monocle-ts' target='_blank'>
+  <a class='text-gray-600 underline mb-1' href='https://github.com/gcanti/monocle-ts' target='_blank'>
     https://github.com/gcanti/monocle-ts
   </a>
-  <a class='text-gray-400 underline mb-1' href='https://gcanti.github.io/fp-ts/ecosystem/' target='_blank'>
+  <a class='text-gray-600 underline mb-1' href='https://gcanti.github.io/fp-ts/ecosystem/' target='_blank'>
     https://gcanti.github.io/fp-ts/ecosystem/
   </a>
-  <a class='text-gray-400 underline mb-1' href='https://www.cl.cam.ac.uk/~jdy22/papers/lightweight-higher-kinded-polymorphism.pdf' target='_blank'>
+  <a class='text-gray-600 underline mb-1' href='https://www.cl.cam.ac.uk/~jdy22/papers/lightweight-higher-kinded-polymorphism.pdf' target='_blank'>
     Lightweight higher-kinded polymorphism
   </a>
 </div>
@@ -883,7 +883,7 @@ add3(add3(add3(add3(add3(add2(add1(1)))))));
 
   <div v-click='2' class='slidev-vclick-target absolute bottom-4 right-4 text-center'>
     <img src='/images/cb-hell.png' class='h-70 mb-2 mx-auto' />
-    <span class='text-base'>Callback Hell이 떠오르시지 않나요?</span>
+    <span class='text-base text-light-100'>Callback Hell이 떠오르시지 않나요?</span>
   </div>
 
   </div>
@@ -939,7 +939,7 @@ pipe(1, add1, add2, add3, add3, add3, add3, add3, add3);
 
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
     <img src='/images/pipe.png' class='h-46 mb-2 mx-auto' />
-    <span class='text-sm block mb-1'>
+    <span class='text-sm block mb-1 text-light-100'>
       JavaScript의 pipe 연산자 |>는 제안 Stage 2단계에 있습니다.
     </span>
     <span class='text-sm block'>
@@ -1003,8 +1003,8 @@ pipe(
 
   <div v-click class='slidev-vclick-target absolute bottom-4 right-8 text-center'>
     <img src='/images/option-map-some-example.png' class='h-6 mb-2 mx-auto' />
-    <span class='text-sm block'>
-      <span class='bg-light-600 font-mono font-bold'>Some</span> 타입일 경우 <span class='bg-light-600 font-mono font-bold'>map</span> 함수에 전달된 함수가 실행됩니다.
+    <span class='text-sm block text-light-100'>
+      <span class='bg-light-600 text-dark-400 font-mono font-bold'>Some</span> 타입일 경우 <span class='bg-light-600 text-dark-400 font-mono font-bold'>map</span> 함수에 전달된 함수가 실행됩니다.
     </span>
   </div>
 
@@ -1069,8 +1069,8 @@ pipe(
 
   <div v-click class='slidev-vclick-target absolute bottom-4 right-8 text-center'>
     <img src='/images/option-map-none-example.png' class='h-6 mb-2 mx-auto' />
-    <span class='text-sm block'>
-      <span class='bg-light-600 font-mono font-bold'>None</span> 타입일 경우 <span class='bg-light-600 font-mono font-bold'>map</span> 함수에 전달된 함수가 실행되지 않습니다.
+    <span class='text-sm block text-light-100'>
+      <span class='bg-light-600 text-dark-400 font-mono font-bold'>None</span> 타입일 경우 <span class='bg-light-600 text-dark-400 font-mono font-bold'>map</span> 함수에 전달된 함수가 실행되지 않습니다.
     </span>
   </div>
 
@@ -1130,8 +1130,8 @@ func('Hello World!');
 
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
     <img src='/images/either-chain-left-example.png' class='h-16 mb-2 mx-auto' />
-    <span class='text-sm block'>
-      <span class='bg-light-600 font-mono font-bold'>Left</span> 타입일 경우 <span class='bg-light-600 font-mono font-bold'>chain</span> 함수에 전달된 함수가 실행되지 않습니다.
+    <span class='text-sm block text-light-100'>
+      <span class='bg-light-600 text-dark-400 font-mono font-bold'>Left</span> 타입일 경우 <span class='bg-light-600 text-dark-400 font-mono font-bold'>chain</span> 함수에 전달된 함수가 실행되지 않습니다.
     </span>
   </div>
 
@@ -1205,8 +1205,8 @@ func(10);
 
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
     <img src='/images/either-chain-right-example.png' class='h-16 mb-2 mx-auto' />
-    <span class='text-sm block'>
-      <span class='bg-light-600 font-mono font-bold'>Right</span> 타입일 경우 <span class='bg-light-600 font-mono font-bold'>chain</span> 함수에 전달된 함수가 실행 됩니다.
+    <span class='text-sm block text-light-100'>
+      <span class='bg-light-600 text-dark-400 font-mono font-bold'>Right</span> 타입일 경우 <span class='bg-light-600 text-dark-400 font-mono font-bold'>chain</span> 함수에 전달된 함수가 실행 됩니다.
     </span>
   </div>
 
@@ -1255,8 +1255,8 @@ pipe(
 
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
     <img src='/images/option-match-some-example.png' class='h-16 mb-2 mx-auto' />
-    <span class='text-sm block'>
-      <span class='bg-light-600 font-mono font-bold'>Option</span> 의 <span class='bg-light-600 font-mono font-bold'>Some</span> 타입일 경우 두 번째 인자로 전달된 함수가 실행됩니다.
+    <span class='text-sm block text-light-100'>
+      <span class='bg-light-600 text-dark-400 font-mono font-bold'>Option</span> 의 <span class='bg-light-600 text-dark-400 font-mono font-bold'>Some</span> 타입일 경우 두 번째 인자로 전달된 함수가 실행됩니다.
     </span>
   </div>
 
@@ -1311,8 +1311,8 @@ pipe(
 
   <div v-click class='slidev-vclick-target absolute bottom-4 right-12 text-center'>
     <img src='/images/option-match-none-example.png' class='h-16 mb-2 mx-auto' />
-    <span class='text-sm block'>
-      <span class='bg-light-600 font-mono font-bold'>Option</span> 의 <span class='bg-light-600 font-mono font-bold'>None</span> 타입일 경우 첫 번째 인자로 전달된 함수가 실행됩니다.
+    <span class='text-sm block text-light-100'>
+      <span class='bg-light-600 text-dark-400 font-mono font-bold'>Option</span> 의 <span class='bg-light-600 text-dark-400 font-mono font-bold'>None</span> 타입일 경우 첫 번째 인자로 전달된 함수가 실행됩니다.
     </span>
   </div>
 
