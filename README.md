@@ -1,11 +1,25 @@
-# Welcome to [Slidev](https://github.com/slidevjs/slidev)!
+# JSConf Korea 2022 🌈
 
-To start the slide show:
+### "프론트엔드에서 함수형을 추구하면 안되는걸까?" 발표자료
 
-- `npm install`
-- `npm run dev`
-- visit http://localhost:3030
+> 아래 이미지를 클락하세요.
 
-Edit the [slides.md](./slides.md) to see the changes.
 
-Learn more about Slidev on [documentations](https://sli.dev/).
+[![프론트엔드에서 함수형을 추구하면 안되는걸까?](public/images/og.png)]((https://moonlit-nougat-422445.netlify.app/1))
+
+
+<div align='center'>
+  <sub>
+    <sup>
+      Powered by
+      <a href='https://github.com/slidevjs/slidev' target='_blank'>
+        slidev
+      </a>
+      &
+      Written by
+      <a href="https://github.com/alstn2468">Minsu Kim</a>
+      ,
+      <a href="https://github.com/blurfx">Changhui Lee</a>
+    </sup>
+  </sub>
+</div>
