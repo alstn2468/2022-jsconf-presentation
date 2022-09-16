@@ -5,7 +5,7 @@
 > 아래 이미지를 클락하세요.
 
 
-[![프론트엔드에서 함수형을 추구하면 안되는걸까?](public/images/og.png)]((https://moonlit-nougat-422445.netlify.app/1))
+[![프론트엔드에서 함수형을 추구하면 안되는걸까?](public/images/og.png)](https://moonlit-nougat-422445.netlify.app/1)
 
 
 <div align='center'>
