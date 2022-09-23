@@ -24,7 +24,7 @@ fonts:
     href='https://github.com/alstn2468/2022-jsconf-presentation'
     target='_blank'
     alt='GitHub'
-    class='text-xl icon-btn text-white !border-none'
+    class='text-xl icon-btn text-dark-900 !border-none'
   >
     <carbon-logo-github />
   </a>
